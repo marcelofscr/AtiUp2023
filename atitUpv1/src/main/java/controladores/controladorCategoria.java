@@ -6,14 +6,14 @@ package controladores;
  */
 import DAO.CategoriaDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logicadenegocios.CategoriaConceptual;
 
 /**
  *
@@ -28,9 +28,15 @@ public class controladorCategoria extends HttpServlet {
             throws ServletException, IOException {
         CategoriaDAO miCategoriaDAO = new CategoriaDAO();
         String accion = request.getParameter("accion");
+        CategoriaConceptual c = new CategoriaConceptual();
+        c.setCodigoCategoria(666);
+        c.setNombre("Aves");
+        c.setDescripcion("Como vuelan las aves");
+        ArrayList<CategoriaConceptual> x = new ArrayList();
+        x = miCategoriaDAO.listarC();
         HttpSession misession = request.getSession();
         if (accion.equals("cargar")) {
-            misession.setAttribute("lista", miCategoriaDAO.listarC());
+            misession.setAttribute("lista", x);
              response.sendRedirect("ingresarPromptAdmin.jsp");
         }
        
