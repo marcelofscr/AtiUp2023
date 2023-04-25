@@ -10,6 +10,7 @@
         <meta charset="UTF-8">
         <title>Categorias</title>
     </head>
+    <main>
     <body>
         <div>            
                 <table>
@@ -34,5 +35,7 @@
                     <input type="submit" name= "accion" value="cargar">
                 </form>
         </div>
+        </main>
     </body>
+    
 </html>
