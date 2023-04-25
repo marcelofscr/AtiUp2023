@@ -4,7 +4,7 @@ package controladores;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
+import DAO.CategoriaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -13,42 +13,28 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Fagares
  */
-@WebServlet(urlPatterns = {"/controladorCategoria"})
+@WebServlet(name = "controladorCategoria" ,urlPatterns = {"/controladorCategoria"})
 public class controladorCategoria extends HttpServlet {
-    
-    String listar = "vistas/ingresarPromptAdmin.jsp";
-    String add = "";
-    
+  
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String acceso="";
-        String action = request.getParameter("accion");
-        if (action.equalsIgnoreCase("listar")){
-            acceso = listar;
+        CategoriaDAO miCategoriaDAO = new CategoriaDAO();
+        String accion = request.getParameter("accion");
+        HttpSession misession = request.getSession();
+        if (accion.equals("cargar")) {
+            misession.setAttribute("lista", miCategoriaDAO.listarC());
+             response.sendRedirect("ingresarPromptAdmin.jsp");
         }
-        RequestDispatcher vista = request.getRequestDispatcher(acceso);
-        vista.forward(request, response);
-        
-        //get the data from the db (model)
-        String[] categorias = {"SOLID", "ABC", "DEF"};
-        request.setAttribute("categorias", categorias);
-        
-        //redirect to a different page (view)
-        RequestDispatcher dispatcher = request.getRequestDispatcher("ingresarPromptAdmin.jsp");
-        dispatcher.forward(request,response);
-        
-        
-        
-        
+       
+
     }
-    
-    
-   
 
 }

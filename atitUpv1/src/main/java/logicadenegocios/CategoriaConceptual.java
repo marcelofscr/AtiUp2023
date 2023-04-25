@@ -12,43 +12,37 @@ import java.util.Collections;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author Agustin Arias
  */
 public class CategoriaConceptual {
-    
+
     private String nombre;
     private int codigoCategoria;
     private String descripcion;
     private ArrayList<iItem> items;
     private ArrayList<iCurso> cursos;
-    
-    
-    public CategoriaConceptual(String pNombre, String pDescripcion)
-    {
+
+    public CategoriaConceptual(String pNombre, String pDescripcion) {
         this.nombre = pNombre;
         this.descripcion = pDescripcion;
         this.codigoCategoria = NumeroRandom.generarNumeroRandom();
         items = new ArrayList();
         cursos = new ArrayList();
-        
+
     }
-    
-    public CategoriaConceptual()
-    {
+
+    public CategoriaConceptual() {
         items = new ArrayList();
         cursos = new ArrayList();
     }
 
-    @Override
-    public String toString() {
-        return "CategoriaConceptual{" + "nombre=" + nombre + ", codigoCategoria=" + codigoCategoria + ", descripcion=" + descripcion + '}';
-    }
+    
+   
+     
     
     
-
     public String getNombre() {
         return nombre;
     }
@@ -80,29 +74,24 @@ public class CategoriaConceptual {
     public void setCursos(ArrayList<iCurso> cursos) {
         this.cursos = cursos;
     }
-    
-    public int getSizeItems()
-    {
+
+    public int getSizeItems() {
         return items.size();
     }
-    
-    public void agregarCurso(Curso pCurso)
-    {
-       cursos.add(pCurso);
+
+    public void agregarCurso(Curso pCurso) {
+        cursos.add(pCurso);
     }
-    
-    public void agregarItem(Item pItem)
-    {
-       items.add(pItem);
+
+    public void agregarItem(Item pItem) {
+        items.add(pItem);
     }
-    
- 
-    public ArrayList<iItem> getItems()
-    {
+
+    public ArrayList<iItem> getItems() {
         return items;
     }
-    
-   /* 
+
+    /* 
     public ArrayList<iItem> getItemsAlfabeticamente()
     {
       ArrayList<iItem> aux;
@@ -148,17 +137,5 @@ public class CategoriaConceptual {
      }
      
      
- */
-
-     }
-     
-     
-     
-     
-    
-    
-    
-    
-    
-    
-
+     */
+}

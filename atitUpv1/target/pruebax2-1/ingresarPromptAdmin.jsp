@@ -11,26 +11,28 @@
         <title>Categorias</title>
     </head>
     <body>
-        <div>
-            <h1>Categorias</h1>  
-            <table border="1">
-                <thead>
+        <div>            
+                <table>
+                    <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Description</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="CategoriaConceptual" items="${categorias}">
-                        <tr>
-                            <td>${CategoriaConceptual.getCodigoCategoria()}</td>
-                            <td>${CategoriaConceptual.getNombre()}</td>
-                            <td>${CategoriaConceptual.getDescripcion()}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="CategoriaConceptual" items="${lista}">
+                            <tr>
+                                <td><c:out value = "${CategoriaConceptual.getCodigoCategoria()}" /></td>
+                                <td><c:out value = "${CategoriaConceptual.getNombre()}" /></td>
+                                <td><c:out value = "${CategoriaConceptual.getDescripcion()}" /></td>
+                            </tr>
+                        </c:forEach>                
+                    </tbody>
+                </table>
+                <form action="../controladorCategoria" method="POST"  >
+                    <input type="submit" name= "accion" value="cargar">
+                </form>
         </div>
     </body>
 </html>

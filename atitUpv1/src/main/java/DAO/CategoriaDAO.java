@@ -6,37 +6,38 @@ package DAO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import logicadenegocios.CategoriaConceptual;
 
 /**
  *
  * @author Agus
  */
-public class CategoriaDAO extends DAO implements iCategoriaDAO {
+public class CategoriaDAO extends DAO {
 
-    @Override
-    public ArrayList<CategoriaConceptual> listar() {
-        ArrayList<CategoriaConceptual> list = new ArrayList();
-        String sql = "select * from categoriaConceptual;";
+    
+    public ArrayList<CategoriaConceptual> listarC() {
+        String consulta = "SELECT * FROM categoriaConceptual";
+        ArrayList<CategoriaConceptual> c = new ArrayList();
         try {
             con = conexion.establecerConexion();
-            ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(consulta);
             rs = ps.executeQuery();
-                while (rs.next()) {
-                    CategoriaConceptual cate = new CategoriaConceptual();
-                    cate.setCodigoCategoria(rs.getInt("codigoCategoria"));
-                    cate.setNombre(rs.getString("nombre"));
-                    cate.setDescripcion(rs.getString("descripcion"));
-                    list.add(cate);
-                }
-            } catch (SQLException e){
+
+            while (rs.next()) {
+                CategoriaConceptual v = new CategoriaConceptual();
+                v.setCodigoCategoria(rs.getInt(1));
+                v.setNombre(rs.getString(2));
+                v.setDescripcion(rs.getString(3));
+                c.add(v);
             }
-        return list;
+
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+        }
+        return c;
     }
 
-    @Override
-    public CategoriaConceptual list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 
 }

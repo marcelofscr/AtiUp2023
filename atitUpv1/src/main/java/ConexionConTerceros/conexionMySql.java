@@ -29,10 +29,10 @@ public class conexionMySql {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url,user,pass);
-            //JOptionPane.showMessageDialog(null,"Se conectó exitosamente");
+            
             
         }catch(Exception e){
-             JOptionPane.showMessageDialog(null,"Error al conectarse a la db"+ e.toString());
+            
             System.out.println(e.toString());
         }
         return con;

@@ -40,7 +40,7 @@ public class consultarPromptUsuarioControlador extends HttpServlet {
                 try
                 {
                     System.out.println("Hice esto");
-                    lista = cdao.listar();
+                    lista = cdao.listarC();
                     request.setAttribute("categorias", lista);
                     request.getRequestDispatcher("consultarPromptsusuario.jsp").forward(request, response);
                 }catch(Exception e)
