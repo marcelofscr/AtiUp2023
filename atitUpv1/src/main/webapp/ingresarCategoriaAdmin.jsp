@@ -3,6 +3,8 @@
     Created on : Apr 21, 2023, 4:11:18 PM
     Author     : Daniella
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
@@ -54,7 +56,7 @@
             <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
                 <a href="index.jsp" class="w3-bar-item w3-button w3-padding-large">Inicio</a>
                 <a href="ingresarPromptAdmin.jsp" class="w3-bar-item w3-button w3-padding-large">Prompts & Respuestas</a>
-                <a href="ingresarCategoriaAdmin.jsp" class="w3-bar-item w3-button w3-padding-large">Categorias</a>
+                <a href="ingresarCategoriaAdmin.jsp" class="w3-bar-item w3-button w3-padding-large">Agregar ítems</a>
             </div>
         </div>       
 
@@ -63,24 +65,33 @@
 
             <h1 class="w3-xxxlarge w3-text-red"><b>Registrar Categoria.</b></h1>
             <hr style="width:50px;border:5px solid red" class="w3-round">            
-            <form action="/action_page.php" target="_blank">
+            <form  action="../controladorGuardarCategoria" method="POST" accept-charset="UTF-8">
                 <div class="w3-section">
                     <label>Categoria</label>
-                    <input class="w3-input w3-border" type="text" name="categoria" required>
+                    <input id="categoriaC" class="w3-input w3-border" type="text" name="categoria" required >
                 </div>
                 <div class="w3-section">
                     <label>Descripcion</label>
-                    <input class="w3-input w3-border" type="text" name="descripcion" required>
+                    <input id="descripcionC" class="w3-input w3-border" type="text" name="descripcion" required>
                 </div>
-                <div class="w3-section">
-                    <label>Curso</label>
-                    <select name="cursos" id="cursos">
-                        <option value="item1">Curso00</option>
-                        <option value="item2">Curso01</option>
-                    </select>
-                </div>
-                <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Guardar Respuesta</button>
-            </form>             
+            </form> 
+            <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+            <label for="items">Seleccionar curso:</label>
+
+            <select name="cursos" id="cursosC" accept-charset="UTF-8">
+                <c:forEach var="Curso" items="${lista}">
+                    <option> <c:out value = "${Curso.getNombre()}" /></option>
+                </c:forEach>
+            </select>
+
+            <form action="../controladorMostrarCursos" method="POST"  >
+                <input type="submit" name= "accion" value="cargar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
+            </form>
+            </div>    
         </div>
+        <form action="../controladorGuardarCategoria" method="POST">
+               <button type="submit" name="accion" value="GuardarCategoria" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Guardar Respuesta</button>
+
+        </form>
     </body>
 </html>

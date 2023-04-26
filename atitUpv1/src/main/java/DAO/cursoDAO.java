@@ -41,5 +41,19 @@ public class cursoDAO extends DAO{
         return cursos;
     }
     
+          public String obtenerIDCurso(String cursoNombre)
+    {
+       String id ="";
+       ArrayList<Curso> lista = listarCursos();
+       for(Curso curso: lista)
+       {
+           if(curso.getNombre().equals(cursoNombre))
+           {
+               id = curso.getCodigo();
+           }
+       }
+       return id;
+    }
+    
     
 }
