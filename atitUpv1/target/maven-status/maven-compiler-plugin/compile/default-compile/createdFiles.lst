@@ -13,6 +13,7 @@ logicadenegocios\Respuesta.class
 DAO\RespuestaDAO.class
 logicadenegocios\Curso.class
 DAO\CategoriaDAO.class
+controladores\controladorGuardarCategoria.class
 controladores\controladorValoracion.class
 DAO\ValoracionDAO.class
 DAO\ValoracionRespuestaDAO.class
@@ -26,6 +27,7 @@ logicadenegocios\Valoracion.class
 comparadores\itemValoracionEjemploComparator.class
 controladores\controladorCategoria.class
 DAO\ItemEjemploDAO.class
+controladores\controladorMostrarCursos.class
 comparadores\itemValoracionRespuestasComparator.class
 terceros\validarEmail.class
 DAO\DAO.class

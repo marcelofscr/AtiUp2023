@@ -55,7 +55,7 @@
             <div class="w3-container" id="contact" style="margin-top:75px">
                 <h1 class="w3-xxxlarge w3-text-red"><b>Ingresar.</b></h1>
                 <hr style="width:50px;border:5px solid red" class="w3-round">
-                <form action="ingresarPromptAdmin.jsp" method="get">                    
+                <form action="ingresarCategoriaAdmin.jsp" method="get">                    
                     <div class="w3-section">
                         <input class="w3-input w3-border" type="text" required id="email" name="email">
                         <label>Email</label></p>

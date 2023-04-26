@@ -30,5 +30,25 @@ public class CategoriaCursoDao extends DAO{
         return 1;
         
     }
+     
+      public int agregarCursoCategoria(String pIdCurso,int pCodigoCategoria)
+    {
+        String consulta = "insert into categoriaConceptual_Curso(codigoCategoria,idCurso) values(?,?)";
+        try
+        {
+            con = conexion.establecerConexion();
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, pIdCurso);
+            ps.setInt(2,pCodigoCategoria);
+            ps.executeUpdate();
+        }
+        catch(Exception e)
+        {
+            
+        }
+        return 1;
+        
+    }
+    
     
 }
