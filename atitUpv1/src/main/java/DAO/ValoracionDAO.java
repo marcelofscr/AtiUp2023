@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import logicadenegocios.Valoracion;
 
@@ -24,11 +25,11 @@ public class ValoracionDAO extends DAO{
             ps.setInt(2,pValoracion.getEstrella());
             ps.setString(3,pValoracion.getComentario());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null,"");
+           
         }
-        catch(Exception e)
+        catch(SQLException e)
         {
-            JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+            
         }
         return 1;
         

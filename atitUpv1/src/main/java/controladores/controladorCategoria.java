@@ -25,6 +25,7 @@ public class controladorCategoria extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         CategoriaDAO miCategoriaDAO = new CategoriaDAO();
         String accion = request.getParameter("accion");
         ArrayList<CategoriaConceptual> x = new ArrayList();

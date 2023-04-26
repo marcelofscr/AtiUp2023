@@ -13,6 +13,7 @@ logicadenegocios\Respuesta.class
 DAO\RespuestaDAO.class
 logicadenegocios\Curso.class
 DAO\CategoriaDAO.class
+controladores\controladorValoracion.class
 DAO\ValoracionDAO.class
 DAO\ValoracionRespuestaDAO.class
 comparadores\itemValoracionTotalItemComparator.class
