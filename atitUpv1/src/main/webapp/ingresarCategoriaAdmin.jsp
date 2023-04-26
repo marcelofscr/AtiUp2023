@@ -60,38 +60,42 @@
             </div>
         </div>       
 
-        <!-- INGRESAR ITEMS -->
-        <div class="w3-container" id="contact" style="margin-top:75px">
+        <!-- INGRESAR CURSOS -->
+       <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+            <label for="items">Seleccionar categoria:</label>
 
-            <h1 class="w3-xxxlarge w3-text-red"><b>Registrar Categoria.</b></h1>
-            <hr style="width:50px;border:5px solid red" class="w3-round">            
-            <form  action="../controladorGuardarCategoria" method="POST" accept-charset="UTF-8">
-                <div class="w3-section">
-                    <label>Categoria</label>
-                    <input id="categoriaC" class="w3-input w3-border" type="text" name="categoria" required >
-                </div>
-                <div class="w3-section">
-                    <label>Descripcion</label>
-                    <input id="descripcionC" class="w3-input w3-border" type="text" name="descripcion" required>
-                </div>
-            </form> 
-            <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-            <label for="items">Seleccionar curso:</label>
-
-            <select name="cursos" id="cursosC" accept-charset="UTF-8">
+            <select name="items" id="items">
                 <c:forEach var="Curso" items="${lista}">
                     <option> <c:out value = "${Curso.getNombre()}" /></option>
-                </c:forEach>
+                </c:forEach>   
             </select>
+            <%
+                String selectedValue = request.getParameter("items");
+            %>
 
             <form action="../controladorMostrarCursos" method="POST"  >
                 <input type="submit" name= "accion" value="cargar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
             </form>
-            </div>    
-        </div>
-        <form action="../controladorGuardarCategoria" method="POST">
-               <button type="submit" name="accion" value="GuardarCategoria" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Guardar Respuesta</button>
 
-        </form>
+        </div>
+
+            <!<!-- comment -->
+        
+         <!-- INSERTAR CATEGORIA -->
+        <div class="w3-container" id="contact" style="margin-top:75px">
+            <h1 class="w3-xxxlarge w3-text-red"><b>Categoria</b></h1>
+            <hr style="width:50px;border:5px solid red" class="w3-round">
+            <form action="../controladorGuardarCategoria" method="POST">
+                <div class="w3-section">
+                    <label for="stars">Categoría:</label>
+                    <input type="text" name="stars"><br><br>
+                </div>                
+                <div class="w3-section">
+                    <label for="comment">Descripción:</label>
+                    <textarea name="comment" cols="40"></textarea><br><br>
+                    <input type="submit" name= "accion" value="insertar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
+                </div>
+            </form>   
+        
     </body>
 </html>

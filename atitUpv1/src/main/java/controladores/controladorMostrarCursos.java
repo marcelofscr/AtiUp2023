@@ -62,9 +62,6 @@ public class controladorMostrarCursos extends HttpServlet {
     
 
     
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+  
 
 }

@@ -83,15 +83,15 @@ public class controladorGuardarCategoria extends HttpServlet {
         String accion = request.getParameter("accion");
        //String categoriaIn = (String) session.getAttribute("categoria");
        //String descripcionIn = (String) session.getAttribute("descripcion");
-       String categoriaIn = (String)request.getAttribute("categoria");
-       String descripcionIn = (String)request.getAttribute("descripcion");
+       String categoriaIn = request.getParameter("stars");
+       String descripcionIn = request.getParameter("comment");
         //String cursoIn = (String) session.getAttribute("cursos");
-       String cursoIn = (String)request.getAttribute("cursos");
-        if("GuardarCategoria".equals(accion)) 
+       String selectedValue = request.getParameter("items");
+        if("insertar".equals(accion)) 
         {
             categoria = new CategoriaConceptual(categoriaIn, descripcionIn);
             miCategoriaDAO.agregarCategoria(categoria);
-            miCC.agregarCursoCategoria(cursoD.obtenerIDCurso(cursoIn), categoria.getCodigoCategoria());
+            miCC.agregarCursoCategoria(cursoD.obtenerIDCurso(selectedValue), categoria.getCodigoCategoria());
             response.sendRedirect("ingresarCategoriaAdmin.jsp");
         }
         
