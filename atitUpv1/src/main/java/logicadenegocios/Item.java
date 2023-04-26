@@ -60,7 +60,10 @@ public class Item implements iItem{
         return idItem;
     }
 
-    
+    public String getTextoCategoria()
+    {
+        return categoria.getNombre();
+    }
     
     @Override
     public String getTextoEjemplo()

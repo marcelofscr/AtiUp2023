@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -70,57 +71,73 @@
         <!-- Grid para ingresar consulta -->
         <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
             <label for="items">Seleccionar categoria:</label>
+
             <select name="items" id="items">
-                <option value="item1">Item 1</option>
-                <option value="item2">Item 2</option>
+                <c:forEach var="CategoriaConceptual" items="${lista}">
+                    <option> <c:out value = "${CategoriaConceptual.getNombre()}" /></option>
+                </c:forEach>   
             </select>
+            <%
+                String selectedValue = request.getParameter("items");
+            %>
+
+            <form action="../controladorCategoria" method="POST"  >
+                <input type="submit" name= "accion" value="cargar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
+            </form>
+
         </div>
-        <input type="submit" name="listarCategorias" value="Listar categorias" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" href="consultarPromptUsuarioControlador?accion=consultarPromptsUsuario">
-    
+
+
+
 
         <!-- First Grid -->
         <div class="w3-row-padding w3-padding-64 w3-container">                     
-          
+
             <table>
                 <thead>
-                <tr>
-                    <th>Codigo de categoria</th>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                </tr>
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Prompt</th>
+                        <th>Respuesta</th>
+                        <th>Ejemplo</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="em" items="${categorias}" >
-                    
-                <tr>
-                    <td>${em.toString()}</td>
-                    <td>${em.toString()}</td>
-                    <td>${em.toString()}</td>
-                </tr>
-                </c:forEach>
+                    <c:forEach var="Item" items="${listait}">
+                        <tr>
+                            <td><c:out value = "${Item.getTextoCategoria()}" /></td>
+                            <td><c:out value = "${Item.getPrompt()}" /></td>
+                            <td><c:out value = "${Item.getTextoRespuesta()}" /></td>
+                            <td><c:out value = "${Item.getTextoEjemplo()}" /></td>
+                        </tr>
+                    </c:forEach>                
                 </tbody>
             </table>
-            
+
+            <form action="../consultarPromptUsuarioControlador?selectedValue" method="POST" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" >
+                <input type="submit" name= "accion2" value="visualizar">
+            </form>
+
             <% String email = request.getParameter("email");%>
             <h5 style="margin-top: 20px;">Correo: <%= email%></h5>
             <button class="w3-button w3-green w3-padding-large w3-large w3-margin-right">Enviar pdf al correo</button>
 
-   </div>
+        </div>
 
 
 
 
-                         <script>
-                             // Used to toggle the menu on small screens when clicking on the                     menu button
-                             function myF                        unction() {
-                             var x = document.getElementById("navDemo");
-                             if (x.className.indexOf("w3-show                            ") == -1) {
-                                 x.className += " w3-show";
-                             } else {
-                                 x.className = x.className.replace(" w3-                        show", "");
-                                 }
-                             }
-      </script>
+        <script>
+            // Used to toggle the menu on small screens when clicking on the                     menu button
+            function myF                        unction() {
+                var x = document.getElementById("navDemo");
+                if (x.className.indexOf("w3-show                            ") == -1) {
+                    x.className += " w3-show";
+                } else {
+                    x.className = x.className.replace(" w3-                        show", "");
+                }
+            }
+        </script>
 
     </body>
 </html>

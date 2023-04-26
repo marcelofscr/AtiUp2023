@@ -9,7 +9,6 @@ DAO\CategoriaCursoDao.class
 DAO\CategoriaItemDao.class
 logicadenegocios\NumeroRandom.class
 DAO\EjemploDAO.class
-DAO\iCategoriaDAO.class
 logicadenegocios\Respuesta.class
 DAO\RespuestaDAO.class
 logicadenegocios\Curso.class

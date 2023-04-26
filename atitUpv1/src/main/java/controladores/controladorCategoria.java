@@ -19,27 +19,21 @@ import logicadenegocios.CategoriaConceptual;
  *
  * @author Fagares
  */
-@WebServlet(name = "controladorCategoria" ,urlPatterns = {"/controladorCategoria"})
+@WebServlet(name = "controladorCategoria", urlPatterns = {"/controladorCategoria"})
 public class controladorCategoria extends HttpServlet {
-  
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CategoriaDAO miCategoriaDAO = new CategoriaDAO();
         String accion = request.getParameter("accion");
-        CategoriaConceptual c = new CategoriaConceptual();
-        c.setCodigoCategoria(666);
-        c.setNombre("Aves");
-        c.setDescripcion("Como vuelan las aves");
         ArrayList<CategoriaConceptual> x = new ArrayList();
         x = miCategoriaDAO.listarC();
         HttpSession misession = request.getSession();
         if (accion.equals("cargar")) {
             misession.setAttribute("lista", x);
-             response.sendRedirect("ingresarPromptAdmin.jsp");
+            response.sendRedirect("consultarPromptsUsuario.jsp");
         }
-       
 
     }
 
