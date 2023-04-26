@@ -28,14 +28,14 @@ public class consultarPromptUsuarioControlador extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         itemDAO miItemDAO = new itemDAO();
-        String accion = request.getParameter("accion2");
+        String accion = request.getParameter("accion");
         ArrayList<Item> x = new ArrayList();
         String selectedValue = request.getParameter("items");
         x = miItemDAO.listarItemCompleto(selectedValue);
         HttpSession misession = request.getSession();
         if (accion.equals("visualizar")) {
             misession.setAttribute("listait", x);
-            response.sendRedirect("consultarPromptsUsuario.jsp");
+            response.sendRedirect("consultarTopXItems.jsp");
         }
 
     }

@@ -79,13 +79,13 @@
             <label class="form-check-label" for="flexCheckChecked">
                 Respuestas de ChatGPT
             </label>
-            <input class="form-check-input" type="checkbox" value="True" id="respuestasUsuarios" checked>
+            <input class="form-check-input" type="checkbox" value="True" id="respuestasAdmin" checked>
             <label class="form-check-label" for="flexCheckChecked">
                 Respuestas de usuarios
             </label>
             </br>
             <label for="items">Considerar Ejemplos:</label>
-            <select name="considerarRespuestas" id="considerarRespuestas">
+            <select name="considerarEjemplos" id="considerarEjemplos">
                 <option value="True">Si</option>
                 <option value="False">No</option>
             </select>
@@ -93,26 +93,17 @@
             <label class="form-check-label" for="flexCheckChecked">
                 Ejemplos de ChatGPT
             </label>
-            <input class="form-check-input" type="checkbox" value="True" id="ejemplosUsuarios" checked>
+            <input class="form-check-input" type="checkbox" value="True" id="ejemplosAdmin" checked>
             <label class="form-check-label" for="flexCheckChecked">
                 Ejemplos de usuarios
             </label>
             </br>
-            <label for="items">Cantidad items:</label>
-            <select name="limt" id="limit">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="1017">10</option>
-            </select>
+            <div class="w3-section">
+                <label for="stars">Top (1-10):</label>
+                <input type="number" name="limit" min="1" max="10"><br><br>
+            </div>
         </div>
-        <input type="submit" name="listarTopItems" value="Listar top items" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" href="consultarPromptUsuarioControlador?accion=consultarPromptsUsuario">
+        <input type="submit" name="accion" value="Listar top items" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" href="consultarPromptUsuarioControlador?accion=consultarPromptsUsuario">
     
         
 
