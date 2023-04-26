@@ -9,9 +9,11 @@ C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\logicadenegoc
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\logicadenegocios\iItem.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\logicadenegocios\Valoracion.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\logicadenegocios\CategoriaConceptual.java
+C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\controladores\controladorMostrarCursos.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\DAO\AnalisisDeSentimientosDAO.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\DAO\CategoriaDAO.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\DAO\EjemploDAO.java
+C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\controladores\controladorValoracionEjemplo.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\DAO\CategoriaItemDao.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\DAO\cursoDAO.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\DAO\ValoracionEjemploDAO.java
@@ -19,7 +21,7 @@ C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\logicadenegoc
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\DAO\itemDAO.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\logicadenegocios\Curso.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\comparadores\itemPromptComparator.java
-C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\controladores\controladorValoracion.java
+C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\controladores\controladorGuardarCategoria.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\logicadenegocios\Ejemplo.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\ConexionConTerceros\conexionMySql.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\terceros\validarEmail.java
@@ -29,5 +31,6 @@ C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\DAO\ItemRespu
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\DAO\ValoracionRespuestaDAO.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\comparadores\itemValoracionEjemploComparator.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\ConexionConTerceros\AnalisisSentimientos.java
+C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\controladores\controladorValoracionRespuesta.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\DAO\DAO.java
 C:\Users\Fagares\Documents\GitHub\AtiUp2023\atitUpv1\src\main\java\comparadores\itemValoracionRespuestasComparator.java

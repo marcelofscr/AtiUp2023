@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Valoraciones</title>
+        <title>ValoracionesRespuesta</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -39,7 +39,8 @@
                 <a href="index.jsp" class="w3-bar-item w3-button w3-padding-large w3-white">Inicio</a>
                 <a href="consultarPromptsUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Consultar Prompts</a>
                 <a href="ConsultarTopXItems.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Top Items</a>
-                <a href="valoracionUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Valoracion</a>
+                <a href="valoracionRespuestaUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Valoracion Respuesta</a>
+                <a href="valoracionEjemploUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Valoracion Ejemplos</a>
             </div>
 
             <!-- Navbar on small screens -->
@@ -47,7 +48,8 @@
                 <a href="index.jsp" class="w3-bar-item w3-button w3-padding-large">Inicio</a>
                 <a href="consultarPromptsUsuario.jsp" class="w3-bar-item w3-button w3-padding-large">Consultar Prompts</a>
                 <a href="ConsultarTopXItems.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Top Items</a>
-                <a href="valoracionUsuario.jsp" class="w3-bar-item w3-button w3-padding-large">Valoracion</a>
+                <a href="valoracionRespuestaUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Valoracion Respuesta</a>
+                <a href="valoracionEjemploUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Valoracion Ejemplos</a>
             </div>
         </div>
 
@@ -56,18 +58,17 @@
             <h1 class="w3-xxxlarge w3-text-red"><b>Valoracion.</b></h1>
             <hr style="width:50px;border:5px solid red" class="w3-round">
             
-            <form action="../controladorValoracion" method="POST">
+            <form action="../controladorValoracionRespuesta" method="POST">
                 <div class="w3-section">
                     <label for="stars">Estrellas (1-5):</label>
                     <input type="number" name="stars" min="1" max="5"><br><br>
-                </div>
+                </div>                
                 <div class="w3-section">
-                    <label>Email</label>
-                    <input class="w3-input w3-border" type="text" name="Email" required>
-                </div>
-                <div class="w3-section">
-                    <label for="comment">Comment:</label>
+                    <label for="comment">Comentario:</label>
                     <textarea name="comment" rows="5" cols="40"></textarea><br><br>
+                 <div class="w3-section">
+                    <label for="answer">ID Respuesta: </label>
+                    <textarea name="answer" rows="2" cols="40"></textarea><br><br>                 
                   <input type="submit" name= "accion" value="insertar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
                 </div>               
             </form> 

@@ -4,23 +4,28 @@
  */
 package controladores;
 
+import DAO.ItemRespuestaDAO;
+import DAO.RespuestaDAO;
 import DAO.ValoracionDAO;
+import DAO.ValoracionRespuestaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logicadenegocios.Respuesta;
 import logicadenegocios.Valoracion;
 
 /**
  *
  * @author Fagares
  */
-@WebServlet(name = "controladorValoracion", urlPatterns = {"/controladorValoracion"})
-public class controladorValoracion extends HttpServlet {
+@WebServlet(name = "controladorValoracionRespuesta", urlPatterns = {"/controladorValoracionRespuesta"})
+public class controladorValoracionRespuesta extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
    
@@ -29,16 +34,22 @@ public class controladorValoracion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        ValoracionDAO valoracionDao = new ValoracionDAO();
-         String accion = request.getParameter("accion");
+        ValoracionDAO valoracionDao = new ValoracionDAO();     
+        ValoracionRespuestaDAO valoracionrespuestaDAO= new ValoracionRespuestaDAO();
+        
+        String accion = request.getParameter("accion");
         int estrella = Integer.parseInt(request.getParameter("stars"));
         String comentario = request.getParameter("comment");
-
+        int idRespuesta = Integer.parseInt(request.getParameter("answer"));    
+       
         Valoracion valoracion = new Valoracion(comentario, estrella);
-        int x = valoracionDao.agregarValoracion(valoracion);
+        int x = valoracionDao.agregarValoracion(valoracion);        
+        int insertTablaIntermediaRes = valoracionrespuestaDAO.agregarValoracionEjemplo(valoracion.getIdValoracion() ,idRespuesta);
+               
         HttpSession misession = request.getSession();
+        
         if (accion.equals("insertar")) {            
-            response.sendRedirect("valoracionUsuario.jsp");
+            response.sendRedirect("valoracionRespuestaUsuario.jsp");
         }    
                
     }

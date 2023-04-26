@@ -37,6 +37,27 @@ public class CategoriaDAO extends DAO {
         }
         return c;
     }
+    
+       public int agregarCategoria(CategoriaConceptual categoria)
+    {
+        String consulta = "insert into categoriaConceptual(codigoCategoria,nombre,descripcion) values(?,?,?)";
+        try
+        {
+            con = conexion.establecerConexion();
+            ps = con.prepareStatement(consulta);
+            ps.setInt(1,categoria.getCodigoCategoria());
+            ps.setString(2,categoria.getNombre());
+            ps.setString(3,categoria.getDescripcion());
+            ps.executeUpdate();
+        
+        }
+        catch(Exception e)
+        {
+            
+        }
+        return 1;
+        
+    }
 
     
 
