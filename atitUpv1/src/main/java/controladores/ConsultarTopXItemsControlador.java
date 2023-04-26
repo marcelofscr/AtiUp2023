@@ -37,7 +37,7 @@ public class ConsultarTopXItemsControlador extends HttpServlet {
             misession.setAttribute("listait", x);
             response.sendRedirect("ConsultarTopXItems.jsp");
         }
-
+        
     }
 
 }

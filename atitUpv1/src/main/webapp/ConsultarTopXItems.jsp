@@ -118,19 +118,20 @@
            <table>
                 <thead>
                     <tr>
-                        <th>Categoria</th>
+                        
                         <th>Prompt</th>
                         <th>Respuesta</th>
                         <th>Ejemplo</th>
+                        <th>Categoria</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach var="Item" items="${listait}">
                         <tr>
-                            <td><c:out value = "${Item.getTextoCategoria()}" /></td>
                             <td><c:out value = "${Item.getPrompt()}" /></td>
                             <td><c:out value = "${Item.getTextoRespuesta()}" /></td>
                             <td><c:out value = "${Item.getTextoEjemplo()}" /></td>
+                            <td><c:out value = "${Item.getTextoCategoria()}" /></td>
                         </tr>
                     </c:forEach>                
                 </tbody>

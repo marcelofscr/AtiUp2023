@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import logicadenegocios.CategoriaConceptual;
 import logicadenegocios.Item;
 
 /**
@@ -21,13 +20,12 @@ import logicadenegocios.Item;
  * @author Marcelo
  */
 
-@WebServlet(name = "controladorItem", urlPatterns = {"/controladorItem"})
+@WebServlet(name = "ControladorItem", urlPatterns = {"/ControladorItem"})
 public class ControladorItem extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         itemDAO miItemDao = new itemDAO();   
         String accion = request.getParameter("accion3");
         ArrayList<Item> x = new ArrayList();
@@ -35,7 +33,7 @@ public class ControladorItem extends HttpServlet {
         HttpSession misession = request.getSession();
         if (accion.equals("cargar")) {
             misession.setAttribute("lista", x);
-            response.sendRedirect("consultarPromptsUsuario.jsp");
+            response.sendRedirect("ConsultarTopXItems.jsp");
         }
 
     }
