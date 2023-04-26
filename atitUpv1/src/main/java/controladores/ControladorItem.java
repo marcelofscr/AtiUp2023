@@ -21,7 +21,7 @@ import logicadenegocios.Item;
  * @author Marcelo
  */
 
-@WebServlet(name = "controladorCategoria", urlPatterns = {"/controladorCategoria"})
+@WebServlet(name = "controladorItem", urlPatterns = {"/controladorItem"})
 public class ControladorItem extends HttpServlet {
 
     @Override
@@ -31,7 +31,7 @@ public class ControladorItem extends HttpServlet {
         itemDAO miItemDao = new itemDAO();   
         String accion = request.getParameter("accion3");
         ArrayList<Item> x = new ArrayList();
-        x = (ArrayList<Item>) miItemDao.consultarTopXItems(0, true, true, true, true, true, true);
+        x = (ArrayList<Item>) miItemDao.consultarTopXItems(1, true, true, true, true, true, true);
         HttpSession misession = request.getSession();
         if (accion.equals("cargar")) {
             misession.setAttribute("lista", x);
