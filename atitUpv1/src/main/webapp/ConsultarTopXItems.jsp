@@ -99,39 +99,46 @@
                 Ejemplos de usuarios
             </label>
             </br>
+            <!-- Counter para elegir cantidad en el top -->
             <div class="w3-section">
                 <label for="stars">Top (1-10):</label>
                 <input type="number" name="limit" min="1" max="10"><br><br>
             </div>
         </div>
-        <input type="submit" name="accion" value="Listar top items" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" href="consultarPromptUsuarioControlador?accion=consultarPromptsUsuario">
-    
+        
+            
+        <form action="../ConsultarTopXItemsControlador" method="POST" >
+            <input type="submit" name="accion" value="cargar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" href="ConsultarTopXItemControlador?accion=ConsultarTopXItem">
+        </form>
         
 
         <!-- First Grid -->
         <div class="w3-row-padding w3-padding-64 w3-container">                     
           
-            <table>
+           <table>
                 <thead>
-                <tr>
-                    <th>Pregunta</th>
-                    <th>Respuesta</th>
-                    <th>Ejemplo</th>
-                    <th>Categoria</th>
-                </tr>
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Prompt</th>
+                        <th>Respuesta</th>
+                        <th>Ejemplo</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="em" items="${item}" >
-                    
-                <tr>
-                    <td>${em.getPrompt()}</td>
-                    <td>${em.getRespuesta()}</td>
-                    <td>${em.getEjemplo()}</td>
-                    <td>${em.getCategoria()}</td>
-                </tr>
-                </c:forEach>
+                    <c:forEach var="Item" items="${listait}">
+                        <tr>
+                            <td><c:out value = "${Item.getTextoCategoria()}" /></td>
+                            <td><c:out value = "${Item.getPrompt()}" /></td>
+                            <td><c:out value = "${Item.getTextoRespuesta()}" /></td>
+                            <td><c:out value = "${Item.getTextoEjemplo()}" /></td>
+                        </tr>
+                    </c:forEach>                
                 </tbody>
             </table>
+            
+            <form action="../ConsultarTopXItemsControlador?selectedValue" method="POST" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" >
+                <input type="submit" name= "accion2" value="visualizar">
+            </form>
             
             <% String email = request.getParameter("email");%>
             <h5 style="margin-top: 20px;">Correo: <%= email%></h5>

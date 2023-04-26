@@ -84,7 +84,7 @@
             %>
 
             <form action="../controladorCategoria" method="POST"  >
-                <input type="submit" name= "accion" value="cargar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
+                <input type="submit" name= "accion3" value="cargar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
             </form>
 
         </div>
@@ -117,7 +117,7 @@
             </table>
 
             <form action="../consultarPromptUsuarioControlador?selectedValue" method="POST" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" >
-                <input type="submit" name= "accion2" value="visualizar">
+                <input type="submit" name= "accion4" value="visualizar">
             </form>
 
             <% String email = request.getParameter("email");%>

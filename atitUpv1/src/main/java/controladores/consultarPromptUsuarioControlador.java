@@ -28,7 +28,7 @@ public class consultarPromptUsuarioControlador extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         itemDAO miItemDAO = new itemDAO();
-        String accion = request.getParameter("accion");
+        String accion = request.getParameter("accion2");
         ArrayList<Item> x = new ArrayList();
         String selectedValue = request.getParameter("items");
         x = miItemDAO.listarItemCompleto(selectedValue);
