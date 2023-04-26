@@ -35,7 +35,7 @@ public class consultarPromptUsuarioControlador extends HttpServlet {
         HttpSession misession = request.getSession();
         if (accion.equals("visualizar")) {
             misession.setAttribute("listait", x);
-            response.sendRedirect("consultarPromptsUsuario.jsp");
+            response.sendRedirect("consultarTopXItems.jsp");
         }
 
     }

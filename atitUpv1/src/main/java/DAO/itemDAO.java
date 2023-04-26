@@ -4,8 +4,14 @@
  */
 package DAO;
 
+import ConexionConTerceros.conexionMySql;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import logicadenegocios.CategoriaConceptual;
 import logicadenegocios.Item;
@@ -108,5 +114,65 @@ public class itemDAO extends DAO {
 
         return item;
     }
+    public List<Item> consultarTopXItems(int x, boolean considerarRespuestas, boolean considerarEjemplos, 
+                                      boolean respuestasAdmin, boolean respuestasChatGPT, 
+                                      boolean ejemplosAdmin, boolean ejemplosChatGPT) {
+        List<Item> items = new ArrayList<>();
+        String sql = "SELECT item.idItem, item.prompt FROM item ";
 
+        if (considerarRespuestas && considerarEjemplos) {
+            sql += "INNER JOIN item_respuesta ON item.idItem = item_respuesta.idItem " +
+                   "INNER JOIN respuesta ON item_respuesta.idRespuesta = respuesta.idRespuesta " +
+                   "INNER JOIN item_ejemplo ON item.idItem = item_ejemplo.idItem " +
+                   "INNER JOIN ejemplo ON item_ejemplo.idEjemplo = ejemplo.idEjemplo ";
+        } else if (considerarRespuestas) {
+            sql += "INNER JOIN item_respuesta ON item.idItem = item_respuesta.idItem " +
+                   "INNER JOIN respuesta ON item_respuesta.idRespuesta = respuesta.idRespuesta ";
+        } else if (considerarEjemplos) {
+            sql += "INNER JOIN item_ejemplo ON item.idItem = item_ejemplo.idItem " +
+                   "INNER JOIN ejemplo ON item_ejemplo.idEjemplo = ejemplo.idEjemplo ";
+        }
+
+        sql += "WHERE 1=1 ";
+
+        if (considerarRespuestas) {
+            if (respuestasAdmin) {
+                sql += "AND respuesta.fuenteRes = 'admin' ";
+            } else if (respuestasChatGPT) {
+                sql += "AND respuesta.fuenteRes = 'chatGPT' ";
+            }
+        }
+
+        if (considerarEjemplos) {
+            if (ejemplosAdmin) {
+                sql += "AND ejemplo.fuenteEj = 'admin' ";
+            } else if (ejemplosChatGPT) {
+                sql += "AND ejemplo.fuenteEj = 'chatGPT' ";
+            }
+        }
+
+        sql += "GROUP BY item.idItem " +
+               "HAVING AVG(valoracion.estrellas) >= 4 " +
+               "ORDER BY AVG(valoracion.estrellas) DESC " +
+               "LIMIT ?";
+
+        try  {
+            con = conexion.establecerConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Item item = new Item();
+                item.setIdItem(rs.getInt("idItem"));
+                item.setPrompt(rs.getString("prompt"));
+
+                items.add(item);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Error consultando top X items: " + ex.getMessage());
+        }
+
+        return items;
+    }
 }
