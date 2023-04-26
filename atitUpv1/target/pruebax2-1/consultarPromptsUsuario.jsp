@@ -50,7 +50,7 @@
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
                 <a href="index.jsp" class="w3-bar-item w3-button w3-padding-large w3-white">Inicio</a>
                 <a href="consultarPromptsUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Consultar Prompts</a>
-                <a href="ConsultarTopXItems.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Consultar Top Items</a>
+                <a href="ConsultarTopXItems.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Top Items</a>
                 <a href="valoracionRespuestaUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Valoracion Respuesta</a>
                 <a href="valoracionEjemploUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Valoracion Ejemplos</a>
             </div>
@@ -59,7 +59,7 @@
             <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
                 <a href="index.jsp" class="w3-bar-item w3-button w3-padding-large">Inicio</a>
                 <a href="consultarPromptsUsuario.jsp" class="w3-bar-item w3-button w3-padding-large">Consultar Prompts</a>
-                <a href="ConsultarTopXItems.html" class="w3-bar-item w3-button w3-padding-large">Consulttar Top Items</a>
+                <a href="ConsultarTopXItems.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Top Items</a>
                 <a href="valoracionRespuestaUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Valoracion Respuesta</a>
                 <a href="valoracionEjemploUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Valoracion Ejemplos</a>
             </div>
@@ -84,7 +84,7 @@
             %>
 
             <form action="../controladorCategoria" method="POST"  >
-                <input type="submit" name= "accion3" value="cargar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
+                <input type="submit" name= "accion" value="cargar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
             </form>
 
         </div>
@@ -117,7 +117,7 @@
             </table>
 
             <form action="../consultarPromptUsuarioControlador?selectedValue" method="POST" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" >
-                <input type="submit" name= "accion4" value="visualizar">
+                <input type="submit" name= "accion2" value="visualizar">
             </form>
 
             <% String email = request.getParameter("email");%>

@@ -24,7 +24,7 @@ public class itemDAO extends DAO {
 
     public ArrayList<Item> listarItemCompleto(String cateFiltro) {
         CategoriaConceptual cateTemp = new CategoriaConceptual();
-        String consulta = "SELECT c.nombre, i.prompt, a.respuesta, e.ejemplo\n"
+        String consulta = "SELECT c.codigoCategoria, c.nombre, c.descripcion, i.prompt, a.respuesta, e.ejemplo\n"
                 + "FROM categoriaConceptual c\n"
                 + "INNER JOIN categoriaConceptual_Item ci ON c.codigoCategoria = ci.codigoCategoria\n"
                 + "INNER JOIN item i ON ci.idItem = i.idItem\n"
@@ -32,7 +32,7 @@ public class itemDAO extends DAO {
                 + "INNER JOIN respuesta a ON ia.idRespuesta = a.idRespuesta\n"
                 + "INNER JOIN item_Ejemplo ie ON i.idItem = ie.idItem\n"
                 + "INNER JOIN ejemplo e ON ie.idEjemplo = e.idEjemplo";
-                //"WHERE c.nombre =" +cateFiltro+ ";";
+        //"WHERE c.nombre =" +cateFiltro+ ";";
         ArrayList<Item> c = new ArrayList();
         try {
             con = conexion.establecerConexion();
@@ -41,11 +41,16 @@ public class itemDAO extends DAO {
 
             while (rs.next()) {
                 Item v = new Item();
-                cateTemp.setNombre(rs.getString(1));
-                v.setCategoria(cateTemp);
-                v.setPrompt(rs.getString(2));
-                v.setRespuesta(rs.getString(3));
-                v.setEjemplo(rs.getString(4));
+                CategoriaConceptual categoriaconceptual = new CategoriaConceptual();
+                
+                categoriaconceptual.setCodigoCategoria(rs.getInt(1));
+                categoriaconceptual.setNombre(rs.getString(2));
+                categoriaconceptual.setDescripcion(rs.getString(3));
+                
+                v.setCategoria(categoriaconceptual);
+                v.setPrompt(rs.getString(4));
+                v.setRespuesta(rs.getString(5));
+                v.setEjemplo(rs.getString(6));
                 c.add(v);
             }
 
@@ -114,23 +119,24 @@ public class itemDAO extends DAO {
 
         return item;
     }
-    public List<Item> consultarTopXItems(int x, boolean considerarRespuestas, boolean considerarEjemplos, 
-                                      boolean respuestasAdmin, boolean respuestasChatGPT, 
-                                      boolean ejemplosAdmin, boolean ejemplosChatGPT) {
+
+    public List<Item> consultarTopXItems(int x, boolean considerarRespuestas, boolean considerarEjemplos,
+            boolean respuestasAdmin, boolean respuestasChatGPT,
+            boolean ejemplosAdmin, boolean ejemplosChatGPT) {
         List<Item> items = new ArrayList<>();
         String sql = "SELECT item.idItem, item.prompt FROM item ";
 
         if (considerarRespuestas && considerarEjemplos) {
-            sql += "INNER JOIN item_respuesta ON item.idItem = item_respuesta.idItem " +
-                   "INNER JOIN respuesta ON item_respuesta.idRespuesta = respuesta.idRespuesta " +
-                   "INNER JOIN item_ejemplo ON item.idItem = item_ejemplo.idItem " +
-                   "INNER JOIN ejemplo ON item_ejemplo.idEjemplo = ejemplo.idEjemplo ";
+            sql += "INNER JOIN item_respuesta ON item.idItem = item_respuesta.idItem "
+                    + "INNER JOIN respuesta ON item_respuesta.idRespuesta = respuesta.idRespuesta "
+                    + "INNER JOIN item_ejemplo ON item.idItem = item_ejemplo.idItem "
+                    + "INNER JOIN ejemplo ON item_ejemplo.idEjemplo = ejemplo.idEjemplo ";
         } else if (considerarRespuestas) {
-            sql += "INNER JOIN item_respuesta ON item.idItem = item_respuesta.idItem " +
-                   "INNER JOIN respuesta ON item_respuesta.idRespuesta = respuesta.idRespuesta ";
+            sql += "INNER JOIN item_respuesta ON item.idItem = item_respuesta.idItem "
+                    + "INNER JOIN respuesta ON item_respuesta.idRespuesta = respuesta.idRespuesta ";
         } else if (considerarEjemplos) {
-            sql += "INNER JOIN item_ejemplo ON item.idItem = item_ejemplo.idItem " +
-                   "INNER JOIN ejemplo ON item_ejemplo.idEjemplo = ejemplo.idEjemplo ";
+            sql += "INNER JOIN item_ejemplo ON item.idItem = item_ejemplo.idItem "
+                    + "INNER JOIN ejemplo ON item_ejemplo.idEjemplo = ejemplo.idEjemplo ";
         }
 
         sql += "WHERE 1=1 ";
@@ -151,12 +157,12 @@ public class itemDAO extends DAO {
             }
         }
 
-        sql += "GROUP BY item.idItem " +
-               "HAVING AVG(valoracion.estrellas) >= 4 " +
-               "ORDER BY AVG(valoracion.estrellas) DESC " +
-               "LIMIT ?";
+        sql += "GROUP BY item.idItem "
+                + "HAVING AVG(valoracion.estrellas) >= 4 "
+                + "ORDER BY AVG(valoracion.estrellas) DESC "
+                + "LIMIT ?";
 
-        try  {
+        try {
             con = conexion.establecerConexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();

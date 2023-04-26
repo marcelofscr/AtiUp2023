@@ -1,8 +1,10 @@
+controladores\ConsultarTopXItemsControlador.class
 ConexionConTerceros\conexionMySql.class
 logicadenegocios\iItem.class
 DAO\ValoracionEjemploDAO.class
 DAO\itemDAO.class
 logicadenegocios\Ejemplo.class
+controladores\ControladorItem.class
 AnalisisSentimientos.class
 controladores\consultarPromptUsuarioControlador.class
 DAO\CategoriaCursoDao.class

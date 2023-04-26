@@ -21,7 +21,7 @@ import logicadenegocios.*;
  *
  * @author Marcelo
  */
-@WebServlet(name = "consultarPromptUsuarioControlador", urlPatterns = {"/consultarPromptUsuarioControlador"})
+@WebServlet(name = "ConsultarTopXItemsControlador", urlPatterns = {"/ConsultarTopXItemsControlador"})
 public class ConsultarTopXItemsControlador extends HttpServlet {
 
     @Override
@@ -35,7 +35,7 @@ public class ConsultarTopXItemsControlador extends HttpServlet {
         HttpSession misession = request.getSession();
         if (accion.equals("visualizar")) {
             misession.setAttribute("listait", x);
-            response.sendRedirect("consultarPromptsUsuario.jsp");
+            response.sendRedirect("ConsultarTopXItems.jsp");
         }
 
     }
