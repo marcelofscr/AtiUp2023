@@ -73,28 +73,28 @@
         <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
             <label for="items">Considerar Respuestas:</label>
             <select name="considerarRespuestas" id="considerarRespuestas">
-                <option value="True">Si</option>
-                <option value="False">No</option>
+                <option value=true>Si</option>
+                <option value=false>No</option>
             </select>
-            <input class="form-check-input" type="checkbox" value="True" id="respuestasChatGPT" checked>
+            <input class="form-check-input" type="checkbox" value="true" id="respuestasChatGPT" checked>
             <label class="form-check-label" for="flexCheckChecked">
                 Respuestas de ChatGPT
             </label>
-            <input class="form-check-input" type="checkbox" value="True" id="respuestasAdmin" checked>
+            <input class="form-check-input" type="checkbox" value="true" id="respuestasAdmin" checked>
             <label class="form-check-label" for="flexCheckChecked">
                 Respuestas de usuarios
             </label>
             </br>
             <label for="items">Considerar Ejemplos:</label>
             <select name="considerarEjemplos" id="considerarEjemplos">
-                <option value="True">Si</option>
-                <option value="False">No</option>
+                <option value="true">Si</option>
+                <option value="false">No</option>
             </select>
-            <input class="form-check-input" type="checkbox" value="True" id="ejemplosChatGPT" checked>
+            <input class="form-check-input" type="checkbox" value="true" id="ejemplosChatGPT" checked>
             <label class="form-check-label" for="flexCheckChecked">
                 Ejemplos de ChatGPT
             </label>
-            <input class="form-check-input" type="checkbox" value="True" id="ejemplosAdmin" checked>
+            <input class="form-check-input" type="checkbox" value="true" id="ejemplosAdmin" checked>
             <label class="form-check-label" for="flexCheckChecked">
                 Ejemplos de usuarios
             </label>
@@ -120,24 +120,20 @@
                     <tr>
                         
                         <th>Prompt</th>
-                        <th>Respuesta</th>
-                        <th>Ejemplo</th>
-                        <th>Categoria</th>
+                        <th>Id</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach var="Item" items="${listait}">
                         <tr>
                             <td><c:out value = "${Item.getPrompt()}" /></td>
-                            <td><c:out value = "${Item.getTextoRespuesta()}" /></td>
-                            <td><c:out value = "${Item.getTextoEjemplo()}" /></td>
-                            <td><c:out value = "${Item.getTextoCategoria()}" /></td>
+                            <td><c:out value = "${Item.getIdItem()}" /></td>
                         </tr>
                     </c:forEach>                
                 </tbody>
             </table>
             
-            <form action="../ConsultarTopXItemsControlador?selectedValue" method="POST" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" >
+            <form action="../ConsultarTopXItemsControlador" method="POST" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" >
                 <input type="submit" name= "accion4" value="visualizar">
             </form>
             

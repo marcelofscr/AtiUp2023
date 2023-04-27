@@ -120,23 +120,31 @@ public class itemDAO extends DAO {
         return item;
     }
 
-    public List<Item> consultarTopXItems(int x, boolean considerarRespuestas, boolean considerarEjemplos,
+    public ArrayList<Item> consultarTopXItems(int x, boolean considerarRespuestas, boolean considerarEjemplos,
             boolean respuestasAdmin, boolean respuestasChatGPT,
             boolean ejemplosAdmin, boolean ejemplosChatGPT) {
-        List<Item> items = new ArrayList<>();
-        String sql = "SELECT item.idItem, item.prompt FROM item ";
+        ArrayList<Item> items = new ArrayList<>();
+        String sql = "SELECT item.idItem, item.prompt, valoracion.estrellas FROM item ";
 
         if (considerarRespuestas && considerarEjemplos) {
             sql += "INNER JOIN item_respuesta ON item.idItem = item_respuesta.idItem "
                     + "INNER JOIN respuesta ON item_respuesta.idRespuesta = respuesta.idRespuesta "
                     + "INNER JOIN item_ejemplo ON item.idItem = item_ejemplo.idItem "
-                    + "INNER JOIN ejemplo ON item_ejemplo.idEjemplo = ejemplo.idEjemplo ";
+                    + "INNER JOIN ejemplo ON item_ejemplo.idEjemplo = ejemplo.idEjemplo "
+                    
+                    + "INNER JOIN valoracion_Respuesta ON respuesta.idRespuesta = valoracion_Respuesta.idRespuesta"
+                    + "INNER JOIN valoracion_Ejemplo ON ejemplo.idEjemplo = valoracion_Ejemplo.idEjemplo"
+                    + "INNER JOIN valoracion ON valoracion_Respuesta.idValoracion = valoracion.idValoracion AND valoracion_Ejemplo.idValoracion = valoracion.idValoracion";
         } else if (considerarRespuestas) {
             sql += "INNER JOIN item_respuesta ON item.idItem = item_respuesta.idItem "
-                    + "INNER JOIN respuesta ON item_respuesta.idRespuesta = respuesta.idRespuesta ";
+                    + "INNER JOIN respuesta ON item_respuesta.idRespuesta = respuesta.idRespuesta "
+                    + "INNER JOIN valoracion_Respuesta ON respuesta.idRespuesta = valoracion_Respuesta.idRespuesta"
+                    + "INNER JOIN valoracion ON valoracion_Respuesta.idValoracion = valoracion.idValoracion";
         } else if (considerarEjemplos) {
             sql += "INNER JOIN item_ejemplo ON item.idItem = item_ejemplo.idItem "
-                    + "INNER JOIN ejemplo ON item_ejemplo.idEjemplo = ejemplo.idEjemplo ";
+                    + "INNER JOIN ejemplo ON item_ejemplo.idEjemplo = ejemplo.idEjemplo "
+                    + "INNER JOIN valoracion_Ejemplo ON ejemplo.idEjemplo = valoracion_Ejemplo.idEjemplo" 
+                    + "INNER JOIN valoracion ON valoracion_Ejemplo.idValoracion = valoracion.idValoracion";
         }
 
         sql += "WHERE 1=1 ";
@@ -169,8 +177,8 @@ public class itemDAO extends DAO {
 
             while (rs.next()) {
                 Item item = new Item();
-                item.setIdItem(rs.getInt("idItem"));
-                item.setPrompt(rs.getString("prompt"));
+                item.setIdItem(rs.getInt(1));
+                item.setPrompt(rs.getString(2));
 
                 items.add(item);
             }

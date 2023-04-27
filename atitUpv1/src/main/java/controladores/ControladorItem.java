@@ -29,7 +29,7 @@ public class ControladorItem extends HttpServlet {
         itemDAO miItemDao = new itemDAO();   
         String accion = request.getParameter("accion3");
         ArrayList<Item> x = new ArrayList();
-        x = (ArrayList<Item>) miItemDao.consultarTopXItems(1, true, true, true, true, true, true);
+        x = (ArrayList<Item>) miItemDao.consultarTopXItems(5, true, true, true, false, false, false);
         HttpSession misession = request.getSession();
         if (accion.equals("cargar")) {
             misession.setAttribute("lista", x);
