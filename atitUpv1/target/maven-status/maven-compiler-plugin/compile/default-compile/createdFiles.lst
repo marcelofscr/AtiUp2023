@@ -12,7 +12,6 @@ DAO\CategoriaCursoDao.class
 DAO\CategoriaItemDao.class
 logicadenegocios\NumeroRandom.class
 DAO\EjemploDAO.class
-controladores\controladorResponderItem.class
 logicadenegocios\Respuesta.class
 DAO\RespuestaDAO.class
 controladores\ControladorListarIdItems.class

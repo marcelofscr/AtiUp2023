@@ -48,7 +48,7 @@
             <div class="w3-bar w3-red w3-card w3-left-align w3-large">
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
                 <a href="index.jsp" class="w3-bar-item w3-button w3-padding-large w3-white">Inicio</a>
-                <a href="ingresarPromptAdmin.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Prompts & Respuestas</a>
+                <a href="ingresarPromptAdmin.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Agregar ítems</a>
                 
             </div>
 
@@ -58,7 +58,7 @@
 
         <!-- INGRESAR CURSOS -->
        <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-            <label for="items">Ver cursos:</label>
+            <label for="items">Ver ítems:</label>
 
             <select name="items" id="items">
                 <c:forEach var="String" items="${lista}">

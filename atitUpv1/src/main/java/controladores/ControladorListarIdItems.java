@@ -44,7 +44,7 @@ public class ControladorListarIdItems extends HttpServlet {
         HttpSession misession = request.getSession();
         if (accion.equals("cargar")) {
             misession.setAttribute("lista", x);
-            response.sendRedirect("responderItems.jsp");
+            response.sendRedirect("contestarItems.jsp");
         }
 
     
