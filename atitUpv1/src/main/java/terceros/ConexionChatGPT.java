@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ConexionChatGPT {
     public static String conexion(String pregunta, String instruccion) {
-        OpenAiService  service = new OpenAiService("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");
+        OpenAiService  service = new OpenAiService("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");
         String respuesta = "";
         EditRequest request = EditRequest.builder()
                 .model("text-davinci-edit-001")
