@@ -57,8 +57,22 @@
                 <hr style="width:50px;border:5px solid red" class="w3-round">
                 <form action="ingresarCategoriaAdmin.jsp" method="get">                    
                     <div class="w3-section">
+                        
+                        <script>
+                            function validateEmail() {
+                                var email = document.getElementById("email").value;
+                                var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                if (pattern.test(email)) {
+                                    alert("Valid email address!");
+                                } else {
+                                    alert("Invalid email address!");
+                                }
+                            }
+                        </script>
+                        
                         <input class="w3-input w3-border" type="text" required id="email" name="email">
-                        <label>Email</label></p>
+                        <label>Email</label>
+                        <button class="w3-button w3-black w3-padding-large w3-large w3-margin" type="button" onclick="validateEmail()">Validar</button>
                         <input class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" type="submit" value="Ingresar" > 
                     </div>                    
 

@@ -69,10 +69,24 @@
                                 );
                     }
                         </script>
+
+                        <script>
+                            function validateEmail() {
+                                var email = document.getElementById("email").value;
+                                var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                if (pattern.test(email)) {
+                                    alert("Valid email address!");
+                                } else {
+                                    alert("Invalid email address!");
+                                }
+                            }
+                        </script>
+
                         <p>
                         <input class="w3-input" type="text" required id="email" name="email">
-                            <label>Email</label></p>
-                        <input class="w3-button w3-black w3-padding-large w3-large w3-margin-" type="submit" value="Ingresar" >                       
+                            <label for="email">Email</label></p>
+                        <button class="w3-button w3-black w3-padding-large w3-large w3-margin" type="button" onclick="validateEmail()">Validar</button>
+                        <input class="w3-button w3-black w3-padding-large w3-large w3-margin" type="submit" value="Ingresar" >                       
                     </form>                     
                 </div>
                 <div class="w3-third w3-center">
