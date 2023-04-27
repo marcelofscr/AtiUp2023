@@ -5,6 +5,7 @@
 package controladores;
 
 import DAO.CategoriaDAO;
+import DAO.ConsultasDAO;
 import DAO.itemDAO;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,29 +25,76 @@ import logicadenegocios.*;
 @WebServlet(name = "ConsultarTopXItemsControlador", urlPatterns = {"/ConsultarTopXItemsControlador"})
 public class ConsultarTopXItemsControlador extends HttpServlet {
 
+    private static final long serialVersionUID = 1L;
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        itemDAO miItemDAO = new itemDAO();
-        
-        String accion = request.getParameter("accion4");
-        ArrayList<Item> x = new ArrayList();
-        //int limit = Integer.parseInt(request.getParameter("selectValue"));
-        /*boolean considerarRespuestas = Boolean.parseBoolean(request.getParameter("selectValue"));
-        boolean considerarEjemplos = Boolean.parseBoolean(request.getParameter("selectValue"));
-        boolean respuestasAdmin = Boolean.parseBoolean(request.getParameter("selectValue"));
-        boolean respuestasChatGPT = Boolean.parseBoolean(request.getParameter("selectValue"));
-        boolean ejemplosAdmin = Boolean.parseBoolean(request.getParameter("selectValue"));
-        boolean ejemplosChatGPT = Boolean.parseBoolean(request.getParameter("selectValue"));*/
-        
-        //x = miItemDAO.consultarTopXItems(5, considerarRespuestas, considerarEjemplos, respuestasAdmin, respuestasChatGPT, ejemplosAdmin, ejemplosChatGPT);
-        x = miItemDAO.consultarTopXItems(5, true, true, true, false, false, false);
+        ConsultasDAO miconsultasDAO = new ConsultasDAO();
+
+        String accion = request.getParameter("accionTop");
+        ArrayList<String> x = new ArrayList();
+        String topNumero = request.getParameter("topNumero");
+
         HttpSession misession = request.getSession();
-        if (accion.equals("visualizar")) {
+
+        //CONSULTA 1 - SUBCONSULTA 1
+        if (accion.equals("ValoracionEjemplo")) {
+            x = miconsultasDAO.listarItemConsulta(topNumero, 1);
             misession.setAttribute("listait", x);
             response.sendRedirect("ConsultarTopXItems.jsp");
         }
-        
+        //CONSULTA 1 - SUBCONSULTA 2
+        if (accion.equals("ValoracionRespuesta")) {
+            x = miconsultasDAO.listarItemConsulta(topNumero, 2);
+            misession.setAttribute("listait", x);
+            response.sendRedirect("ConsultarTopXItems.jsp");
+        }
+        //CONSULTA 1 - SUBCONSULTA 3
+        if (accion.equals("ValoracionAmbas")) {
+            x = miconsultasDAO.listarItemConsulta(topNumero, 3);
+            misession.setAttribute("listait", x);
+            response.sendRedirect("ConsultarTopXItems.jsp");
+        }
+
+        //CONSULTA 2 - SUBCONSULTA 1
+        if (accion.equals("ValoracionResAdmin")) {
+            x = miconsultasDAO.listarItemConsulta(topNumero, 4);
+            misession.setAttribute("listait", x);
+            response.sendRedirect("ConsultarTopXItems.jsp");
+        }
+        //CONSULTA 2 - SUBCONSULTA 2
+        if (accion.equals("ValoracionReschatgpt")) {
+            x = miconsultasDAO.listarItemConsulta(topNumero, 5);
+            misession.setAttribute("listait", x);
+            response.sendRedirect("ConsultarTopXItems.jsp");
+        }
+        //CONSULTA 2 - SUBCONSULTA 3
+        if (accion.equals("ValoracionResFuenteAmbas")) {
+            x = miconsultasDAO.listarItemConsulta(topNumero, 6);
+            misession.setAttribute("listait", x);
+            response.sendRedirect("ConsultarTopXItems.jsp");
+        }
+
+        //CONSULTA 3 - SUBCONSULTA 1
+        if (accion.equals("ValoracionEjAdmin")) {
+            x = miconsultasDAO.listarItemConsulta(topNumero, 7);
+            misession.setAttribute("listait", x);
+            response.sendRedirect("ConsultarTopXItems.jsp");
+        }
+        //CONSULTA 3 - SUBCONSULTA 2
+        if (accion.equals("ValoracionEjchatgpt")) {
+            x = miconsultasDAO.listarItemConsulta(topNumero, 8);
+            misession.setAttribute("listait", x);
+            response.sendRedirect("ConsultarTopXItems.jsp");
+        }
+        //CONSULTA 3 - SUBCONSULTA 3
+        if (accion.equals("ValoracionEjFuenteAmbas")) {
+            x = miconsultasDAO.listarItemConsulta(topNumero, 9);
+            misession.setAttribute("listait", x);
+            response.sendRedirect("ConsultarTopXItems.jsp");
+        }
+
     }
 
 }

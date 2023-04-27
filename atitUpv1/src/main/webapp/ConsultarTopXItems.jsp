@@ -39,6 +39,15 @@
             w3-bar,h2,button {
                 font-family: "Montserrat", sans-serif
             }
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            input[type="submit"] {
+                margin: 10px 0;
+            }
         </style>
     </head>
     <body>
@@ -58,7 +67,7 @@
             <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
                 <a href="index.jsp" class="w3-bar-item w3-button w3-padding-large">Inicio</a>
                 <a href="consultarPromptsUsuario.jsp" class="w3-bar-item w3-button w3-padding-large">Consultar Prompts</a>
-                <a href="ConsultarTopXItems.html" class="w3-bar-item w3-button w3-padding-large">Consulttar Top Items</a>
+                <a href="ConsultarTopXItems.jsp" class="w3-bar-item w3-button w3-padding-large">Consulttar Top Items</a>
                 <a href="valoracionRespuestaUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Valoracion Respuesta</a>
                 <a href="valoracionEjemploUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Valoracion Ejemplos</a>
             </div>
@@ -70,80 +79,55 @@
         </header>
 
         <!-- Grid para ingresar consulta -->
-        <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-            <label for="items">Considerar Respuestas:</label>
-            <select name="considerarRespuestas" id="considerarRespuestas">
-                <option value=true>Si</option>
-                <option value=false>No</option>
-            </select>
-            <input class="form-check-input" type="checkbox" value="true" id="respuestasChatGPT" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Respuestas de ChatGPT
-            </label>
-            <input class="form-check-input" type="checkbox" value="true" id="respuestasAdmin" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Respuestas de usuarios
-            </label>
-            </br>
-            <label for="items">Considerar Ejemplos:</label>
-            <select name="considerarEjemplos" id="considerarEjemplos">
-                <option value="true">Si</option>
-                <option value="false">No</option>
-            </select>
-            <input class="form-check-input" type="checkbox" value="true" id="ejemplosChatGPT" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Ejemplos de ChatGPT
-            </label>
-            <input class="form-check-input" type="checkbox" value="true" id="ejemplosAdmin" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Ejemplos de usuarios
-            </label>
-            </br>
-            <!-- Counter para elegir cantidad en el top -->
-            <div class="w3-section">
-                <label for="stars">Top (1-10):</label>
-                <input type="number" name="limit" min="1" max="10"><br><br>
-            </div>
-        </div>
-        
-            
-        <form action="../ControladorItem" method="POST" >
-            <input type="submit" name="accion3" value="cargar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
-        </form>
-        
+        <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">            
 
-        <!-- First Grid -->
+
+            <!--PARA CONSULTAS -->            
+            <form action="../ConsultarTopXItemsControlador"  method="POST" class="w3-button w3-green w3-padding-large w3-large w3-margin-right" >     
+                <label>TOP (1-10):</label>
+                <input class="w3-input" type="text" required id="topNumero" name="topNumero">  
+                <!-- CONSULTA 1 -->     
+                <input type="submit" name= "accionTop" value="ValoracionEjemplo">
+                <input type="submit" name= "accionTop" value="ValoracionRespuesta">
+                <input type="submit" name= "accionTop" value="ValoracionAmbas"><br>
+                <!-- CONSULTA 2 --> 
+                <input type="submit" name= "accionTop" value="ValoracionResAdmin">
+                <input type="submit" name= "accionTop" value="ValoracionReschatgpt">
+                <input type="submit" name= "accionTop" value="ValoracionResFuenteAmbas"><br>
+                <!-- CONSULTA 3 --> 
+                <input type="submit" name= "accionTop" value="ValoracionEjAdmin">
+                <input type="submit" name= "accionTop" value="ValoracionEjchatgpt">
+                <input type="submit" name= "accionTop" value="ValoracionEjFuenteAmbas"><br>               
+            </form>
+        </div> 
+
+
+        <!-- Tabla Grid -->
         <div class="w3-row-padding w3-padding-64 w3-container">                     
-          
-           <table>
+
+            <table>
                 <thead>
-                    <tr>
-                        
+                    <tr>                        
                         <th>Prompt</th>
-                        <th>Id</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="Item" items="${listait}">
-                        <tr>
-                            <td><c:out value = "${Item.getPrompt()}" /></td>
-                            <td><c:out value = "${Item.getIdItem()}" /></td>
+                    <c:forEach var="str" items="${listait}">
+                        <tr>                            
+                            <td><c:out value = "${str}" /></td>                            
                         </tr>
                     </c:forEach>                
                 </tbody>
             </table>
-            
-            <form action="../ConsultarTopXItemsControlador" method="POST" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" >
-                <input type="submit" name= "accion4" value="visualizar">
-            </form>
-            
+
+
             <% String email = request.getParameter("email");%>
             <h5 style="margin-top: 20px;">Correo: <%= email%></h5>
             <button class="w3-button w3-green w3-padding-large w3-large w3-margin-right">Enviar pdf al correo</button>
 
-   </div>
+        </div>
 
-      <script>
+        <script>
             // Used to toggle the menu on small screens when clicking on the                     menu button
             function myFunction() {
                 var x = document.getElementById("navDemo");
@@ -153,7 +137,7 @@
                     x.className = x.className.replace(" w3-show", "");
                 }
             }
-      </script>
+        </script>
 
     </body>
 </html>

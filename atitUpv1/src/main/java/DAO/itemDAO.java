@@ -32,7 +32,8 @@ public class itemDAO extends DAO {
                 + "INNER JOIN respuesta a ON ia.idRespuesta = a.idRespuesta\n"
                 + "INNER JOIN item_Ejemplo ie ON i.idItem = ie.idItem\n"
                 + "INNER JOIN ejemplo e ON ie.idEjemplo = e.idEjemplo\n"
-                + "WHERE c.nombre = '"+cateFiltro+"';";
+                + "WHERE c.nombre = '"+cateFiltro+"'"
+                + "ORDER BY i.prompt ASC;";
         ArrayList<Item> c = new ArrayList();
         try {
             con = conexion.establecerConexion();
