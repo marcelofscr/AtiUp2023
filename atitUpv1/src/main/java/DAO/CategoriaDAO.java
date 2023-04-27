@@ -33,7 +33,7 @@ public class CategoriaDAO extends DAO {
             }
 
         } catch (Exception e) {
-            //JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+            
         }
         return c;
     }
@@ -59,6 +59,19 @@ public class CategoriaDAO extends DAO {
         
     }
 
-    
+      
+       public int buscarIDCategoria(String pNombre)
+       {
+           int id = 0;
+           ArrayList<CategoriaConceptual> lista = listarC();
+           for(CategoriaConceptual categoria: lista)
+           {
+               if(categoria.getNombre().equals(pNombre))
+               {
+                   id = categoria.getCodigoCategoria();
+               }
+           }
+           return id;
+       }
 
 }

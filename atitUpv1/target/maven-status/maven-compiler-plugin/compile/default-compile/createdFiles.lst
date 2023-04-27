@@ -4,6 +4,7 @@ logicadenegocios\iItem.class
 DAO\ValoracionEjemploDAO.class
 DAO\ConsultasDAO.class
 DAO\itemDAO.class
+controladores\controladorMostrarCategoriaItem.class
 logicadenegocios\Ejemplo.class
 AnalisisSentimientos.class
 controladores\consultarPromptUsuarioControlador.class
@@ -11,8 +12,10 @@ DAO\CategoriaCursoDao.class
 DAO\CategoriaItemDao.class
 logicadenegocios\NumeroRandom.class
 DAO\EjemploDAO.class
+controladores\controladorResponderItem.class
 logicadenegocios\Respuesta.class
 DAO\RespuestaDAO.class
+controladores\ControladorListarIdItems.class
 logicadenegocios\Curso.class
 DAO\CategoriaDAO.class
 controladores\controladorGuardarCategoria.class
@@ -20,6 +23,7 @@ controladores\controladorValoracionRespuesta.class
 DAO\ValoracionDAO.class
 DAO\ValoracionRespuestaDAO.class
 comparadores\itemValoracionTotalItemComparator.class
+controladores\controladorContestarItems.class
 comparadores\itemPromptComparator.class
 logicadenegocios\Item.class
 DAO\cursoDAO.class
@@ -28,6 +32,7 @@ logicadenegocios\CategoriaConceptual.class
 logicadenegocios\Valoracion.class
 comparadores\itemValoracionEjemploComparator.class
 controladores\controladorCategoria.class
+controladores\controladorGuardarItem.class
 controladores\controladorValoracionEjemplo.class
 DAO\ItemEjemploDAO.class
 controladores\controladorMostrarCursos.class
@@ -35,3 +40,4 @@ comparadores\itemValoracionRespuestasComparator.class
 terceros\validarEmail.class
 DAO\DAO.class
 DAO\ItemRespuestaDAO.class
+terceros\ConexionChatGPT.class

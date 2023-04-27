@@ -25,11 +25,11 @@ public class EjemploDAO extends DAO {
             ps.setString(2,pEjemplo.getTextoEjemplo());
             ps.setString(3,pEjemplo.getFuenteEjemplo());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null,"");
+            
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+            
         }
         return 1;
         

@@ -25,7 +25,7 @@ public class ItemRespuestaDAO extends DAO{
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+           
         }
         return 1;
         

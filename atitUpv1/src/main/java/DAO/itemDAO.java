@@ -71,7 +71,7 @@ public class itemDAO extends DAO {
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error" + e.toString());
+            
         }
         return 1;
 
@@ -94,7 +94,7 @@ public class itemDAO extends DAO {
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error" + e.toString());
+            
         }
         return prompts;
 
@@ -115,7 +115,7 @@ public class itemDAO extends DAO {
                 item = aux;
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error" + e.toString());
+            
         }
 
         return item;
@@ -189,5 +189,59 @@ public class itemDAO extends DAO {
         }
 
         return items;
+    }
+    
+    
+    
+    
+     public ArrayList<Item> listarItems()
+    {
+        
+        String consulta = "select * from item";
+        ArrayList<Item> c = new ArrayList();
+        try {
+            con = conexion.establecerConexion();
+            ps = con.prepareStatement(consulta);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Item item = new Item();
+                item.setIdItem(rs.getInt(1));
+                item.setPrompt(rs.getString(2));
+                c.add(item);
+            }
+
+        } catch (Exception e) {
+            
+        }
+        return c;
+        
+    }
+    
+    public String getPrompt(int pId)
+    {
+        ArrayList<Item> item = listarItems();
+        String p = "";
+        for(Item i: item)
+        {
+            if(i.getIdItem() == pId)
+            {
+                p = i.getPrompt();
+            }
+        }
+        return p;
+    }
+    
+       public ArrayList<String> getIdItems()
+    {
+        ArrayList<String> lista = new ArrayList();
+        ArrayList<Item> item = listarItems();
+        String aux;
+        for(Item it: item)
+        {
+            aux = it.getIdItem() +" - "+it.getPrompt();
+            lista.add(aux);
+        }
+        return lista;
     }
 }

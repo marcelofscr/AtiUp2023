@@ -17,7 +17,7 @@ public class RespuestaDAO extends DAO{
     
     public int agregarRespuesta(Respuesta pRespuesta)
     {
-        String consulta = "insert into respuesta (idRespuesa, respuesta, fuenteRes) values(?,?,?)";
+        String consulta = "insert into respuesta(idRespuesta,respuesta,fuenteRes) values(?,?,?)";
         try
         {
             con = conexion.establecerConexion();
@@ -26,11 +26,9 @@ public class RespuestaDAO extends DAO{
             ps.setString(2,pRespuesta.getTextoRespuesta());
             ps.setString(3,pRespuesta.getFuenteRespuesta());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null,"");
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Error"+ e.toString());
         }
         return 1;
         
@@ -60,7 +58,7 @@ public class RespuestaDAO extends DAO{
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+          
         }
         
         return respuesta;

@@ -36,14 +36,14 @@ public class cursoDAO extends DAO{
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+            
         }
         return cursos;
     }
     
-          public String obtenerIDCurso(String cursoNombre)
+     public String obtenerIDCurso(String cursoNombre)
     {
-       String id ="";
+       String id = "";
        ArrayList<Curso> lista = listarCursos();
        for(Curso curso: lista)
        {

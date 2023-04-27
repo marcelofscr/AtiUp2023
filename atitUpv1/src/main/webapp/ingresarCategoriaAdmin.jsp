@@ -62,7 +62,7 @@
 
         <!-- INGRESAR CURSOS -->
        <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-            <label for="items">Seleccionar categoria:</label>
+            <label for="items">Seleccionar curso:</label>
 
             <select name="items" id="items">
                 <c:forEach var="Curso" items="${lista}">
@@ -86,6 +86,10 @@
             <h1 class="w3-xxxlarge w3-text-red"><b>Categoria</b></h1>
             <hr style="width:50px;border:5px solid red" class="w3-round">
             <form action="../controladorGuardarCategoria" method="POST">
+                <div class="w3-section">
+                    <label for="stars">Curso:</label>
+                    <input type="text" name="curso"><br><br>
+                </div> 
                 <div class="w3-section">
                     <label for="stars">Categoría:</label>
                     <input type="text" name="stars"><br><br>

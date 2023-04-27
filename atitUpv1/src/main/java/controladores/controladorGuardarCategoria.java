@@ -26,67 +26,19 @@ import logicadenegocios.Curso;
 @WebServlet(name = "controladorGuardarCategoria", urlPatterns = {"/controladorGuardarCategoria"})
 public class controladorGuardarCategoria extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-  
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    /*@Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        RequestDispatcher x = null;
-        CategoriaDAO miCategoriaDAO = new CategoriaDAO();
-        CategoriaCursoDao miCC = new CategoriaCursoDao();
-        cursoDAO cursoD = new cursoDAO();
-        CategoriaConceptual categoria;
-        //HttpSession misession = request.getSession();
-        String accion = request.getParameter("accion");
-        String categoriaIn = request.getParameter("categoria");
-        String descripcionIn = request.getParameter("descripcion");
-        String cursoIn = request.getParameter("cursos");
-        if("GuardarCategoria".equals(accion)) 
-        {
-            categoria = new CategoriaConceptual(categoriaIn, descripcionIn);
-            miCategoriaDAO.agregarCategoria(categoria);
-            miCC.agregarCursoCategoria(cursoD.obtenerIDCurso(cursoIn), categoria.getCodigoCategoria());
-            x = request.getRequestDispatcher("ingresarCategoriaAdmin.jsp");
-        }
-
-}*/
-    
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //RequestDispatcher x = null;
-        //HttpSession session = request.getSession();
+      
         CategoriaDAO miCategoriaDAO = new CategoriaDAO();
         CategoriaCursoDao miCC = new CategoriaCursoDao();
         cursoDAO cursoD = new cursoDAO();
         CategoriaConceptual categoria;
-        //HttpSession misession = request.getSession();
         String accion = request.getParameter("accion");
-       //String categoriaIn = (String) session.getAttribute("categoria");
-       //String descripcionIn = (String) session.getAttribute("descripcion");
        String categoriaIn = request.getParameter("stars");
        String descripcionIn = request.getParameter("comment");
-        //String cursoIn = (String) session.getAttribute("cursos");
-       String selectedValue = request.getParameter("items");
+       String selectedValue = request.getParameter("curso");
         if("insertar".equals(accion)) 
         {
             categoria = new CategoriaConceptual(categoriaIn, descripcionIn);

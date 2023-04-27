@@ -28,7 +28,7 @@ public class ValoracionRespuestaDAO extends DAO {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+            
         }
         return 1;
         
@@ -57,7 +57,7 @@ public class ValoracionRespuestaDAO extends DAO {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+            
         }
         return valoraciones;
     }
