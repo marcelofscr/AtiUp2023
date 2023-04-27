@@ -70,31 +70,20 @@
             <h1 class="w3-margin w3-jumbo">Consultar Items</h1>
         </header>
 
-        <!-- Grid para ingresar consulta -->
+
+        <!-- items dropdown menu -->
         <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-            <label for="items">Seleccionar categoria:</label>
-
-            <select name="items" id="items">
-                <c:forEach var="CategoriaConceptual" items="${lista}">
+            <select name="items">
+                <c:forEach var="CategoriaConceptual" items="${lista}" >
                     <option> <c:out value = "${CategoriaConceptual.getNombre()}" /></option>
-                </c:forEach>   
+                </c:forEach> 
             </select>
-            <%
-                String selectedValue = request.getParameter("items");
-            %>
-
             <form action="../controladorCategoria" method="POST"  >
                 <input type="submit" name= "accion" value="cargar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
             </form>
 
-        </div>
 
-
-
-
-        <!-- First Grid -->
-        <div class="w3-row-padding w3-padding-64 w3-container">                     
-
+            
             <table>
                 <thead>
                     <tr>
@@ -105,6 +94,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
                     <c:forEach var="Item" items="${listait}">
                         <tr>
                             <td><c:out value = "${Item.getTextoCategoria()}" /></td>
@@ -112,13 +102,20 @@
                             <td><c:out value = "${Item.getTextoRespuesta()}" /></td>
                             <td><c:out value = "${Item.getTextoEjemplo()}" /></td>
                         </tr>
-                    </c:forEach>                
+                    </c:forEach> 
                 </tbody>
             </table>
 
-            <form action="../consultarPromptUsuarioControlador?selectedValue" method="POST" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" >
+
+            <form action="../consultarPromptUsuarioControlador"  method="POST" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" >
+                <input class="w3-input" type="text" required id="selectedValue" name="selectedValue">
+                <label>CategoriaSeleccionada</label>
                 <input type="submit" name= "accion2" value="visualizar">
             </form>
+
+
+            
+
 
             <% String email = request.getParameter("email");%>
             <h5 style="margin-top: 20px;">Correo: <%= email%></h5>
