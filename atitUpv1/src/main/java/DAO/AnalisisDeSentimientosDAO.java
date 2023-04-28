@@ -3,108 +3,127 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
-/*
-import ConexionConTerceros.AnalisisSentimientos;
+import static ConexionConTerceros.ConexionChatGPT.conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import logicadenegocios.Item;
+import logicadenegocios.Valoracion;
 
 
  /*
  * @author Usuario
  */
-/*
-public class AnalisisDeSentimientosDAO extends DAO{
-   public String analisisSentimientosCategoria(int pCodigoCategoria) {
-       String sqlItems = "SELECT idItem FROM categoriaConceptual_Item WHERE codigoCategoria = ?";
-       String sqlRespuestas = "SELECT valoracion.comentario FROM valoracion" +
-            "JOIN valoracion_Respuesta ON valoracion.idValoracion = valoracion_Respuesta.idValoracion"+
-            "WHERE valoracion_Respuesta.idRespuesta IN" +" (SELECT idRespuesta FROM item_Respuesta WHERE idItem = ?)";
-    try {
-        con = conexion.establecerConexion();
-        // Obtener los ítems asociados con la categoría conceptual de interés      
-        PreparedStatement consultaItems = con.prepareStatement(sqlItems);
-        consultaItems.setInt(1, pCodigoCategoria);
-        ResultSet resultadoItems = consultaItems.executeQuery();
-        // Concatenar todos los comentarios para cada ítem
-        StringBuilder comentariosItems = new StringBuilder();
-        while (resultadoItems.next()) {
-            int idItem = resultadoItems.getInt("idItem");
-            PreparedStatement consultaRespuestas = con.prepareStatement(sqlRespuestas);
-            consultaRespuestas.setInt(1, idItem);
-            ResultSet resultadoRespuestas = consultaRespuestas.executeQuery();
-            StringBuilder comentariosItem = new StringBuilder();
-            while (resultadoRespuestas.next()) {
-                String comentario = resultadoRespuestas.getString("comentario");
-                comentariosItem.append(comentario).append(" ");
+
+public class AnalisisDeSentimientosDAO extends DAO{   
+// ANALISIS POR MEDIO DE UNA CATEGORIA
+public String listarComentarios(int id){
+        String seleccionarValoracion = "SELECT valoracion.idValoracion, estrellas, comentario FROM valoracion JOIN valoracion_Respuesta ON " +
+                "valoracion.idValoracion = valoracion_Respuesta.idValoracion" + " WHERE valoracion_Respuesta.idRespuesta IN " + 
+                "(SELECT idRespuesta FROM item_Respuesta WHERE idItem ='"+id+"')";
+        String r = "";
+        ArrayList<Valoracion> c = new ArrayList();
+        try {
+            con = conexion.establecerConexion();
+            ps = con.prepareStatement(seleccionarValoracion);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                //Valoracion v = new Valoracion();
+                //v.setIdValoracion(rs.getInt(1));
+               //v.setEstrella(rs.getInt(2));
+                r += (rs.getString(3));
+                //c.add(v);
             }
-            resultadoRespuestas.close();
-            comentariosItems.append(comentariosItem.toString()).append(" ");
+
+        } catch (Exception e) {
+            
+            //JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+
         }
-        resultadoItems.close();  
-        // Realizar el análisis de sentimientos de la cadena de texto de la categoría conceptual
-        String comentariosCategoria = comentariosItems.toString();
-        //String sentimiento = AnalisisSentimientos.main(comentariosCategoria);
-        con.close();
-        return sentimiento;
-        //System.out.println("Sentimiento de la categoría conceptual: " + sentimiento);   
-    } catch (SQLException e) {
-        System.err.println("Error de conexión a la base de datos: " + e.getMessage());
+        return r;
     }
-     return "No existe categorias registradas para realizar el sentimiento";  
+     
+     
+     public String listarComentariosId(int pCategoria)
+     {
+         ArrayList<Item> listaItems = listarItemsCategoria(pCategoria);
+         String comentarios = "";
+         for(Item it: listaItems)
+         {
+             comentarios += listarComentarios(it.getIdItem());
+         }
+         return comentarios;
+     }
+     
+     
+     public ArrayList<Item> listarItemsCategoria(int pCategoria)
+    {
+        
+        String consulta = "SELECT item.* "+
+                 "FROM item "+
+                 "JOIN categoriaConceptual_Item ON item.idItem = categoriaConceptual_Item.idItem WHERE categoriaConceptual_Item.codigoCategoria ='"+pCategoria+"'";
+        ArrayList<Item> c = new ArrayList();
+        
+        try {
+            con = conexion.establecerConexion();
+            ps = con.prepareStatement(consulta);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Item item = new Item();
+                item.setIdItem(rs.getInt(1));
+                item.setPrompt(rs.getString(2));
+                c.add(item);
+            }
+
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+            
+        }
+        return c;
+        
+    }
+     
+ // ANALISIS POR MEDIO DE  UN ITEM
+     
+    public String listarComentariosItem(int pItem){
+         ArrayList<Item> listaItems2 = listarItems(pItem);
+         String comentarios = "";
+         for(Item it2: listaItems2)
+         {
+             comentarios += listarComentarios(it2.getIdItem());
+         }
+         return comentarios;
+     }
+ 
+     public ArrayList<Item> listarItems(int pItem)
+    {
+        
+        String consulta = "SELECT item.* "+
+                 "FROM item "+
+                 " WHERE idItem ='"+pItem+"'";
+        ArrayList<Item> c = new ArrayList();
+        
+        try {
+            con = conexion.establecerConexion();
+            ps = con.prepareStatement(consulta);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Item item = new Item();
+                item.setIdItem(rs.getInt(1));
+                item.setPrompt(rs.getString(2));
+                c.add(item);
+            }
+
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+            
+        }
+        return c;
+        
+    }
+
 }
-
-public String analisisSentimientosItem(int pIdItem) {
-    String sql = "SELECT valoracion.comentario FROM valoracion JOIN valoracion_Respuesta" +
-            "ON valoracion.idValoracion = valoracion_Respuesta.idValoracion WHERE valoracion_Respuesta.idRespuesta " + 
-            "IN (SELECT idRespuesta FROM item_Respuesta WHERE idItem = ?)";
-    try {
-        con = conexion.establecerConexion();
-        PreparedStatement consulta = con.prepareStatement(sql);
-        consulta.setInt(1, pIdItem);
-        ResultSet resultado = consulta.executeQuery();
-        StringBuilder comentarios = new StringBuilder();
-        while (resultado.next()) {
-            String comentario = resultado.getString("comentario");
-            comentarios.append(comentario).append(" ");
-        }
-        resultado.close();  
-        // Realizar el análisis de sentimientos de la cadena de texto de los comentarios del ítem
-        String comentariosItem = comentarios.toString();
-        String sentimiento = AnalisisSentimientos.main(comentariosItem);
-        con.close();
-        return sentimiento;
-    } catch (SQLException e) {
-        System.err.println("Error de conexión a la base de datos: " + e.getMessage());
-    }
-    return "No existen comentarios registrados para el ítem seleccionado";
-} 
-
-
-public String analisisSentimientosComentario(int pIdItem, int pCodigoCategoria) {
-    String sqlRespuestas = "SELECT valoracion.comentario FROM valoracion" + "JOIN valoracion_Respuesta ON valoracion.idValoracion"
-            + " = valoracion_Respuesta.idValoracion" + "JOIN item_Respuesta ON valoracion_Respuesta.idRespuesta = item_Respuesta.idRespuesta"+ 
-            "JOIN categoriaConceptual_Item ON item_Respuesta.idItem = categoriaConceptual_Item.idItem" + "WHERE categoriaConceptual_Item.codigoCategoria = ? AND item_Respuesta.idItem = ?";
-    try {
-        con = conexion.establecerConexion();
-        PreparedStatement consultaRespuestas = con.prepareStatement(sqlRespuestas);
-        consultaRespuestas.setInt(1, pIdItem);
-        consultaRespuestas.setInt(2, pCodigoCategoria);
-        ResultSet resultadoRespuestas = consultaRespuestas.executeQuery();
-        StringBuilder comentariosItem = new StringBuilder();
-        while (resultadoRespuestas.next()) {
-            String comentario = resultadoRespuestas.getString("comentario");
-            comentariosItem.append(comentario).append(" ");
-        }
-        resultadoRespuestas.close();
-        String comentarios = comentariosItem.toString();
-        String sentimiento = AnalisisSentimientos.main(comentarios);
-        con.close();
-        return sentimiento;
-    } catch (SQLException e) {
-        System.err.println("Error de conexión a la base de datos: " + e.getMessage());
-    }
-    return "No se pudo obtener el sentimiento del comentario.";
-}}
-
-*/
