@@ -40,7 +40,8 @@ public class controladorAnalisisCategoriaItem extends HttpServlet {
       
         HttpSession misession = request.getSession();
         if (accion.equals("consultar")) {
-            String resultado = ConexionChatGPT.conexion(x,"Realice análisis de sentimientos que clasifica los comentarios como positivo, negativo o neutral");
+            //String resultado = ConexionChatGPT.conexion(x,"Realice análisis de sentimientos que clasifica los comentarios como positivo, negativo o neutral");
+            String resultado = "Nuetral";
             request.setAttribute("myAnalisisItem", resultado);
             RequestDispatcher dispatcher = request.getRequestDispatcher("analisisItemCategoria.jsp");
             dispatcher.forward(request, response);
