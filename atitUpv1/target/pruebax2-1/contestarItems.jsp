@@ -83,7 +83,7 @@
             <form action="../controladorContestarItems" method="POST">
                 <div class="w3-section">
                     <label for="stars">Id del ítem:</label>
-                    <input type="text" name="iditem"><br><br>
+                    <input type="text" name="iditem" required><br><br>
                 </div>                
                 <div class="w3-section">
                      <label for="stars">Fuente de la respuesta :</label>

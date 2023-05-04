@@ -86,11 +86,11 @@
             <form action="../controladorGuardarItem" method="POST">
                 <div class="w3-section">
                     <label for="stars">Categoria:</label>
-                    <input type="text" name="categoria"><br><br>
+                    <input type="text" name="categoria" required><br><br>
                 </div>                
                 <div class="w3-section">
                     <label for="comment">Prompt:</label>
-                    <textarea name="prompt" rows="5" cols="40"></textarea><br><br>
+                    <textarea name="prompt" rows="5" cols="40" required></textarea><br><br>
                  <div class="w3-section">               
                   <input type="submit" name= "accion" value="insertar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
                 </div>               

@@ -88,15 +88,15 @@
             <form action="../controladorGuardarCategoria" method="POST">
                 <div class="w3-section">
                     <label for="stars">Curso:</label>
-                    <input type="text" name="curso"><br><br>
+                    <input type="text" name="curso" required><br><br>
                 </div> 
                 <div class="w3-section">
                     <label for="stars">Categoría:</label>
-                    <input type="text" name="stars"><br><br>
+                    <input type="text" name="stars" required><br><br>
                 </div>                
                 <div class="w3-section">
                     <label for="comment">Descripción:</label>
-                    <textarea name="comment" cols="40"></textarea><br><br>
+                    <textarea name="comment" required cols="40"></textarea><br><br>
                     <input type="submit" name= "accion" value="insertar" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">
                 </div>
             </form>   
