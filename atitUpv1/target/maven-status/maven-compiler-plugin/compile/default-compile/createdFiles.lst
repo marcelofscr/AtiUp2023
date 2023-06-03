@@ -39,9 +39,11 @@ controladores\controladorContestarItems.class
 logicadenegocios\Item.class
 logicadenegocios\iCurso.class
 controladores\controladorMostrarCategoriasA.class
+logicadenegocios\Bitacora.class
 logicadenegocios\Valoracion.class
 controladores\controladorCategoria.class
 controladores\controladorValoracionEjemplo.class
+DAO\BitacoraDAO.class
 DAO\ItemEjemploDAO.class
 controladores\controladorCategoriaAnalisis.class
 controladores\controladorAnalisisCategoriaItem.class

@@ -4,11 +4,10 @@
  */
 package controladores;
 
-import DAO.CategoriaDAO;
+import DAO.BitacoraDAO;
 import DAO.itemDAO;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +27,8 @@ public class consultarPromptUsuarioControlador extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         itemDAO miItemDAO = new itemDAO();
-        
+        Bitacora bitacora;
+        BitacoraDAO miBitacora = new BitacoraDAO();
         String accion = request.getParameter("accion2");        
         ArrayList<Item> x = new ArrayList();        
         String selectedValue = request.getParameter("selectedValue");
@@ -37,6 +37,8 @@ public class consultarPromptUsuarioControlador extends HttpServlet {
         HttpSession misession = request.getSession();
         if (accion.equals("visualizar")) {
             misession.setAttribute("listait", x);
+            bitacora = new Bitacora("Consulta de prompts");
+            miBitacora.agregarBitacora(bitacora);
             response.sendRedirect("consultarPromptsUsuario.jsp");
         }
 

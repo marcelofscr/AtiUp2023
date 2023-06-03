@@ -5,9 +5,7 @@
 package controladores;
 import DAO.AnalisisDeSentimientosDAO;
 import java.io.IOException;
-import ConexionConTerceros.ConexionChatGPT;
-import static java.lang.Integer.parseInt;
-import java.util.ArrayList;
+import DAO.BitacoraDAO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
-import logicadenegocios.Valoracion;
+import logicadenegocios.Bitacora;
 
 /**
  *
@@ -29,7 +27,8 @@ public class controladorAnalisisCategoriaItem extends HttpServlet {
         AnalisisDeSentimientosDAO miAnalisisDao = new AnalisisDeSentimientosDAO();
         String accion = request.getParameter("accionI");
         String x;
-         
+        Bitacora bitacora;
+        BitacoraDAO miBitacora = new BitacoraDAO(); 
         String selectedValue2 = request.getParameter("selectedValue");
         int selectedIntValue = Integer.parseInt(selectedValue2);
         String selectedValue3 = request.getParameter("selectedValue2");
@@ -45,6 +44,8 @@ public class controladorAnalisisCategoriaItem extends HttpServlet {
             request.setAttribute("myAnalisisItem", resultado);
             RequestDispatcher dispatcher = request.getRequestDispatcher("analisisItemCategoria.jsp");
             dispatcher.forward(request, response);
+            bitacora = new Bitacora("Consulta de analisis de sentimientos 3");
+            miBitacora.agregarBitacora(bitacora);
         }
 
     }

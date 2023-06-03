@@ -4,20 +4,17 @@
  */
 package controladores;
 
-import DAO.ItemRespuestaDAO;
-import DAO.RespuestaDAO;
+import DAO.BitacoraDAO;
 import DAO.ValoracionDAO;
 import DAO.ValoracionRespuestaDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import logicadenegocios.Respuesta;
+import logicadenegocios.Bitacora;
 import logicadenegocios.Valoracion;
 
 /**
@@ -33,7 +30,8 @@ public class controladorValoracionRespuesta extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        Bitacora bitacora;
+        BitacoraDAO miBitacora = new BitacoraDAO();
         ValoracionDAO valoracionDao = new ValoracionDAO();     
         ValoracionRespuestaDAO valoracionrespuestaDAO= new ValoracionRespuestaDAO();
         
@@ -43,12 +41,14 @@ public class controladorValoracionRespuesta extends HttpServlet {
         int idRespuesta = Integer.parseInt(request.getParameter("answer"));    
        
         Valoracion valoracion = new Valoracion(comentario, estrella);
-        int x = valoracionDao.agregarValoracion(valoracion);        
+        int x = valoracionDao.agregarValoracion(valoracion);
         int insertTablaIntermediaRes = valoracionrespuestaDAO.agregarValoracionEjemplo(valoracion.getIdValoracion() ,idRespuesta);
-               
+             
         HttpSession misession = request.getSession();
         
-        if (accion.equals("insertar")) {            
+        if (accion.equals("insertar")) {
+            bitacora = new Bitacora("Agregación de valoración a respuesta");
+            miBitacora.agregarBitacora(bitacora);
             response.sendRedirect("valoracionRespuestaUsuario.jsp");
         }    
                

@@ -4,16 +4,17 @@
  */
 package controladores;
 
+import DAO.BitacoraDAO;
 import DAO.CategoriaDAO;
 import DAO.CategoriaItemDao;
 import DAO.itemDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logicadenegocios.Bitacora;
 import logicadenegocios.Item;
 
 /**
@@ -45,7 +46,8 @@ public class controladorGuardarItem extends HttpServlet {
          //Daos
          itemDAO iDao = new itemDAO();
          CategoriaDAO cDao = new CategoriaDAO();
-         
+         Bitacora bitacora;
+         BitacoraDAO miBitacora = new BitacoraDAO();
          CategoriaItemDao ciDao = new CategoriaItemDao();
          //Parametros
          String accion = request.getParameter("accion");
@@ -56,6 +58,8 @@ public class controladorGuardarItem extends HttpServlet {
              item = new Item(prompt);
              iDao.agregarItem(item);
              ciDao.agregarCategoriaItem(cDao.buscarIDCategoria(categoria), item.getIdItem());
+             bitacora = new Bitacora("Agregacion de item");
+             miBitacora.agregarBitacora(bitacora);
              response.sendRedirect("ingresarPromptAdmin.jsp");
          }
        

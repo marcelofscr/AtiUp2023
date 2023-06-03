@@ -3,6 +3,7 @@ C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\controladores\
 C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\controladores\controladorGuardarCategoria.java
 C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\controladores\controladorMostrarCursos.java
 C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\ConexionConTerceros\ConexionChatGPT.java
+C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\DAO\BitacoraDAO.java
 C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\logicadenegocios\NumeroRandom.java
 C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\controladores\controladorContestarItems.java
 C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\logicadenegocios\iCurso.java
@@ -28,6 +29,7 @@ C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\comparadores\i
 C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\DAO\ItemRespuestaDAO.java
 C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\logicadenegocios\Valoracion.java
 C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\comparadores\itemPromptComparator.java
+C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\logicadenegocios\Bitacora.java
 C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\DAO\DAO.java
 C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\controladores\controladorCategoriaAnalisis.java
 C:\Users\Agus\Desktop\proyectote\AtiUp2023\atitUpv1\src\main\java\terceros\ConexionChatGPT.java

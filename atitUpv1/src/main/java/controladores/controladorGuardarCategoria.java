@@ -4,20 +4,18 @@
  */
 package controladores;
 
+import DAO.BitacoraDAO;
 import DAO.CategoriaCursoDao;
 import DAO.CategoriaDAO;
 import DAO.cursoDAO;
 import java.io.IOException;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import logicadenegocios.Bitacora;
 import logicadenegocios.CategoriaConceptual;
-import logicadenegocios.Curso;
 
 /**
  *
@@ -31,6 +29,8 @@ public class controladorGuardarCategoria extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
       
+        BitacoraDAO miBitacora = new BitacoraDAO();
+        Bitacora bitacora;
         CategoriaDAO miCategoriaDAO = new CategoriaDAO();
         CategoriaCursoDao miCC = new CategoriaCursoDao();
         cursoDAO cursoD = new cursoDAO();
@@ -44,6 +44,8 @@ public class controladorGuardarCategoria extends HttpServlet {
             categoria = new CategoriaConceptual(categoriaIn, descripcionIn);
             miCategoriaDAO.agregarCategoria(categoria);
             miCC.agregarCursoCategoria(cursoD.obtenerIDCurso(selectedValue), categoria.getCodigoCategoria());
+            bitacora = new Bitacora("Agregacion de categoria");
+            miBitacora.agregarBitacora(bitacora);
             response.sendRedirect("ingresarCategoriaAdmin.jsp");
         }
         

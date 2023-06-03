@@ -4,12 +4,10 @@
  */
 package controladores;
 
-import DAO.CategoriaDAO;
 import DAO.ConsultasDAO;
-import DAO.itemDAO;
+import DAO.BitacoraDAO;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +29,9 @@ public class ConsultarTopXItemsControlador extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ConsultasDAO miconsultasDAO = new ConsultasDAO();
+        Bitacora bitacora;
+        BitacoraDAO miBitacora = new BitacoraDAO();
+        
 
         String accion = request.getParameter("accionTop");
         ArrayList<String> x = new ArrayList();
@@ -94,6 +95,9 @@ public class ConsultarTopXItemsControlador extends HttpServlet {
             misession.setAttribute("listait", x);
             response.sendRedirect("ConsultarTopXItems.jsp");
         }
+        bitacora = new Bitacora("Consulta de top X items");
+        miBitacora.agregarBitacora(bitacora);
+        
 
     }
 

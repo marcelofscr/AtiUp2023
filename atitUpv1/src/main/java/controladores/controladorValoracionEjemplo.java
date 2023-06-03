@@ -4,6 +4,7 @@
  */
 package controladores;
 
+import DAO.BitacoraDAO;
 import DAO.ValoracionDAO;
 import DAO.ValoracionEjemploDAO;
 import DAO.ValoracionRespuestaDAO;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logicadenegocios.Bitacora;
 import logicadenegocios.Valoracion;
 
 /**
@@ -29,7 +31,8 @@ public class controladorValoracionEjemplo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        Bitacora bitacora;
+        BitacoraDAO miBitacora = new BitacoraDAO();
         ValoracionDAO valoracionDao = new ValoracionDAO();     
         ValoracionEjemploDAO valoracionejemploDAO= new ValoracionEjemploDAO();
         
@@ -41,10 +44,12 @@ public class controladorValoracionEjemplo extends HttpServlet {
         Valoracion valoracion = new Valoracion(comentario, estrella);
         int x = valoracionDao.agregarValoracion(valoracion);        
         int insertTablaIntermediaRes = valoracionejemploDAO.agregarValoracionEjemplo(valoracion.getIdValoracion() ,idEjemplo);
-               
+        
         HttpSession misession = request.getSession();
         
         if (accion.equals("insertar")) {            
+            bitacora = new Bitacora("Agregación de valoración a ejemplo");
+            miBitacora.agregarBitacora(bitacora);
             response.sendRedirect("valoracionEjemploUsuario.jsp");
         }    
                

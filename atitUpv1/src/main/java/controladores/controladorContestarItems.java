@@ -4,6 +4,7 @@
  */
 package controladores;
 
+import DAO.BitacoraDAO;
 import DAO.EjemploDAO;
 import DAO.ItemEjemploDAO;
 import DAO.ItemRespuestaDAO;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logicadenegocios.Bitacora;
 import logicadenegocios.Ejemplo;
 import logicadenegocios.Respuesta;
 import terceros.ConexionChatGPT;
@@ -43,6 +45,8 @@ public class controladorContestarItems extends HttpServlet {
          EjemploDAO eDao = new EjemploDAO();
          ItemEjemploDAO ieDao = new ItemEjemploDAO();
          ItemRespuestaDAO irDao = new ItemRespuestaDAO();
+         Bitacora bitacora;
+         BitacoraDAO miBitacora = new BitacoraDAO();
          //Parametros
          String accion = request.getParameter("accion");
          int idItem = Integer.parseInt(request.getParameter("iditem"));
@@ -56,6 +60,8 @@ public class controladorContestarItems extends HttpServlet {
              String respuestaC = ConexionChatGPT.conexion(prompt,"contestar y explicar pregunta");
              request.setAttribute("myEjemplop", respuestaC);
              RequestDispatcher dispatcher = request.getRequestDispatcher("contestarItems.jsp");
+             bitacora = new Bitacora("Consulta de respuesta al chatGPT");
+             miBitacora.agregarBitacora(bitacora);
              dispatcher.forward(request, response);
              //response.sendRedirect("ingresarPromptAdmin.jsp");
          }
@@ -64,6 +70,8 @@ public class controladorContestarItems extends HttpServlet {
              String ejemploC = ConexionChatGPT.conexion(prompt,"contestar y dar un ejemplo");
              request.setAttribute("myEjemplo", ejemploC);
              RequestDispatcher dispatcher = request.getRequestDispatcher("contestarItems.jsp");
+             bitacora = new Bitacora("Consulta de ejemplo al chatGPT");
+             miBitacora.agregarBitacora(bitacora);
              dispatcher.forward(request, response);
              
          }
@@ -73,6 +81,8 @@ public class controladorContestarItems extends HttpServlet {
              respuesta.setFuenteRespuesta(fuenteRes);
              rDao.agregarRespuesta(respuesta);
              irDao.agregarItemRespuesta(idItem, respuesta.getIdRespuesta());
+             bitacora = new Bitacora("Agregación de respuesta a item");
+             miBitacora.agregarBitacora(bitacora);
              response.sendRedirect("contestarItems.jsp");
          }
          if(accion.equals("insertarEjemplo"))
@@ -81,6 +91,8 @@ public class controladorContestarItems extends HttpServlet {
              ejemplo.setFuenteEjemplo(fuenteEj);
              eDao.agregarEjemplo(ejemplo);
              ieDao.agregarItemEjemplo(idItem, ejemplo.getIdEjemplo());
+             bitacora = new Bitacora("Agregación de ejemplo a item");
+             miBitacora.agregarBitacora(bitacora);
              response.sendRedirect("contestarItems.jsp");
          }
     }
