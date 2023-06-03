@@ -78,6 +78,7 @@ public class BitacoraDAO extends DAO{
     {
         return listarBitacoras("SELECT * FROM Bitacora;");
         
+        
     }
     
     public ArrayList<Bitacora> listarBitacorasDehoy()

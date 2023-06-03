@@ -48,8 +48,15 @@
             <div class="w3-bar w3-red w3-card w3-left-align w3-large">
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
                 <a href="index.jsp" class="w3-bar-item w3-button w3-padding-large w3-white">Inicio</a>
-                <a href="ingresarPromptAdmin.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Prompts & Respuestas</a>
-                <a href="ingresarCategoriaAdmin.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Categorias</a>
+                <a href="consultarPromptsUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Consultar Prompts</a>
+                <a href="ConsultarTopXItems.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Consultar Top</a>
+                <a href="valoracionRespuestaUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Val. Respuesta</a>
+                <a href="valoracionEjemploUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Val. Ejemplos</a>
+                 <a href="analisisCategoria.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Analisis 1</a>
+                <a href="analisisItem.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Analisis 2</a>
+                <a href="analisisItemCategoria.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Analisis 3</a>
+                <a href="bitacoraConsultas.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Bitacora</a>
+            
             </div>
 
             <!-- Navbar on small screens -->
@@ -57,6 +64,7 @@
                 <a href="index.jsp" class="w3-bar-item w3-button w3-padding-large">Inicio</a>
                 <a href="ingresarPromptAdmin.jsp" class="w3-bar-item w3-button w3-padding-large">Prompts & Respuestas</a>
                 <a href="ingresarCategoriaAdmin.jsp" class="w3-bar-item w3-button w3-padding-large">Agregar ítems</a>
+                <a href="bitacoraConsultas.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Bitacora</a>
             </div>
         </div>       
 

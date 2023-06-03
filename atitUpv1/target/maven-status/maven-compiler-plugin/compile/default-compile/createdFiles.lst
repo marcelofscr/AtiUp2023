@@ -35,6 +35,7 @@ DAO\CategoriaDAO.class
 controladores\controladorValoracionRespuesta.class
 DAO\ValoracionRespuestaDAO.class
 comparadores\itemValoracionTotalItemComparator.class
+controladores\controladorBitacora.class
 controladores\controladorContestarItems.class
 logicadenegocios\Item.class
 logicadenegocios\iCurso.class
