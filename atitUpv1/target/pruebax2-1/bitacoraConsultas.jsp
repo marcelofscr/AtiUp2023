@@ -130,6 +130,10 @@
                 <input type="submit" name="buttontxt" value="XML" class="w3-button w3-red">
                 <input type="submit" name="buttontxt" value="CSV" class="w3-button w3-red">
             </form>
+            <form action="../controladorPDF"  method="GET" >  
+              <!-- <input type="submit" name= "accionPDF" value="PDF"> -->
+               <button action="../controladorPDF"  method="GET"class="w3-button w3-red">PDF</button>
+            </form>
         </div>
 
         <script>

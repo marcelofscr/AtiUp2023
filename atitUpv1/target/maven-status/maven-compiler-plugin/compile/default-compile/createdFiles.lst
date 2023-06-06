@@ -7,9 +7,11 @@ controladores\controladorItemAnalisis.class
 controladores\ControladorGenerarXML.class
 controladores\controladorAnalisisItem.class
 controladores\consultarPromptUsuarioControlador.class
+controladores\controladorPDF.class
 DAO\CategoriaCursoDao.class
 logicadenegocios\NumeroRandom.class
 DAO\EjemploDAO.class
+logicadenegocios\ReporteBitacora.class
 logicadenegocios\Respuesta.class
 DAO\RespuestaDAO.class
 controladores\ControladorListarIdItems.class
@@ -29,6 +31,7 @@ comparadores\itemValoracionRespuestasComparator.class
 DAO\ItemRespuestaDAO.class
 logicadenegocios\CSVConsulta.class
 terceros\ConexionChatGPT.class
+logicadenegocios\DecoradorTraduccion.class
 ConexionConTerceros\conexionMySql.class
 logicadenegocios\iItem.class
 DAO\ValoracionEjemploDAO.class
@@ -36,6 +39,7 @@ controladores\controladorMostrarCategoriaItem.class
 logicadenegocios\Ejemplo.class
 DAO\CategoriaItemDao.class
 terceros\GenerarXML.class
+logicadenegocios\ReporteBitacoraBase.class
 DAO\CategoriaDAO.class
 controladores\controladorValoracionRespuesta.class
 terceros\GenerarCSV.class
@@ -49,6 +53,7 @@ controladores\controladorMostrarCategoriasA.class
 logicadenegocios\Bitacora.class
 logicadenegocios\Valoracion.class
 controladores\controladorCategoria.class
+logicadenegocios\ReporteDecorador.class
 logicadenegocios\TramaPlanaConsulta.class
 controladores\controladorValoracionEjemplo.class
 DAO\BitacoraDAO.class
