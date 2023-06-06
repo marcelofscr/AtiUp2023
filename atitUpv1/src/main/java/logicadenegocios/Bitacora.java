@@ -95,6 +95,10 @@ public class Bitacora {
     public String getAccion() {
         return accion;
     }
+
+    public int getId(){
+        return idBitacora;
+    }
     
     public void attach(ConsultasObserver observer) {
         observers.add(observer);

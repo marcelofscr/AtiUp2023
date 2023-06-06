@@ -33,8 +33,10 @@ DAO\ValoracionEjemploDAO.class
 controladores\controladorMostrarCategoriaItem.class
 logicadenegocios\Ejemplo.class
 DAO\CategoriaItemDao.class
+terceros\GenerarXML.class
 DAO\CategoriaDAO.class
 controladores\controladorValoracionRespuesta.class
+terceros\GenerarCSV.class
 DAO\ValoracionRespuestaDAO.class
 comparadores\itemValoracionTotalItemComparator.class
 controladores\controladorBitacora.class
