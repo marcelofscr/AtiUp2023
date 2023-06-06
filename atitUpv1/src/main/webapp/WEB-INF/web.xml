@@ -8,6 +8,10 @@
         <servlet-name>controladorContestarItems</servlet-name>
         <servlet-class>controladores.controladorContestarItems</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>controladorAgregarCursoCategoria</servlet-name>
+        <servlet-class>controladores.controladorAgregarCursoCategoria</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controladorGuardarItem</servlet-name>
         <url-pattern>/controladorGuardarItem</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>controladorContestarItems</servlet-name>
         <url-pattern>/controladorContestarItems</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controladorAgregarCursoCategoria</servlet-name>
+        <url-pattern>/controladorAgregarCursoCategoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

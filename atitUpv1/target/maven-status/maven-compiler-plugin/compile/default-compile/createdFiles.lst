@@ -1,8 +1,10 @@
+controladores\controladorAgregarCursoCategoria.class
 controladores\ConsultarTopXItemsControlador.class
 DAO\AnalisisDeSentimientosDAO.class
 DAO\ConsultasDAO.class
 DAO\itemDAO.class
 controladores\controladorItemAnalisis.class
+controladores\ControladorGenerarXML.class
 controladores\controladorAnalisisItem.class
 controladores\consultarPromptUsuarioControlador.class
 DAO\CategoriaCursoDao.class

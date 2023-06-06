@@ -56,6 +56,11 @@ public class controladorMostrarCursos extends HttpServlet {
             misession.setAttribute("lista", x);
              response.sendRedirect("ingresarCategoriaAdmin.jsp");
         }
+          else if(accion.equals("cargarCursos"))
+        {
+            misession.setAttribute("listaC", x);
+             response.sendRedirect("ingresarCategoriaCurso.jsp");
+        }
     }
     
     

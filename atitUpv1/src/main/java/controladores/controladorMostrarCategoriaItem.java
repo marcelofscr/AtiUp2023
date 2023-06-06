@@ -36,6 +36,11 @@ public class controladorMostrarCategoriaItem extends HttpServlet {
             misession.setAttribute("lista", x);
             response.sendRedirect("ingresarPromptAdmin.jsp");
         }
+        else if(accion.equals("cargarCategorias"))
+        {
+            misession.setAttribute("listaD", x);
+            response.sendRedirect("ingresarCategoriaCurso.jsp");
+        }
 
     }
 
