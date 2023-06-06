@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logicadenegocios.Bitacora;
+import logicadenegocios.CSVConsulta;
 import logicadenegocios.ConsultasObserver;
 import logicadenegocios.TramaPlanaConsulta;
+import logicadenegocios.XMLConsulta;
 
 /**
  *
@@ -39,7 +41,7 @@ public class controladorFormatosBitacora extends HttpServlet {
         HttpSession misession = request.getSession();     
         x = (ArrayList<Bitacora>) misession.getAttribute("listabit");    
         
-        if (accionFormato.equals("TXT")) {
+        if (accionFormato.equals("TXT")) { 
             response.setContentType("text/plain;charset=UTF-8");
             response.setHeader("Content-Disposition", "attachment;filename=BitacoraRegistro.txt");
             PrintWriter out = response.getWriter();
@@ -56,6 +58,41 @@ public class controladorFormatosBitacora extends HttpServlet {
                 out.close();
             }
         }
+        
+        if (accionFormato.equals("XML")){
+            response.setContentType("text/plain;charset=UTF-8");
+            response.setHeader("Content-Disposition", "attachment;filename=BitacoraRegistro.xml");
+            PrintWriter out = response.getWriter();
+
+            // Create observers
+            ConsultasObserver xmlObserver = new XMLConsulta();
+            observers.add(xmlObserver);
+            //notificar a los observers
+            String xml = xmlObserver.update(x);
+            try {
+                out.println(xml);               
+            } finally {
+                out.close();
+            }
+        }
+
+        if (accionFormato.equals("CSV")){
+            response.setContentType("text/plain;charset=UTF-8");
+            response.setHeader("Content-Disposition", "attachment;filename=BitacoraRegistro.csv");
+            PrintWriter out = response.getWriter();
+
+            // Create observers
+            ConsultasObserver csvObserver = new CSVConsulta();
+            observers.add(csvObserver);
+            //notificar a los observers
+            String csv = csvObserver.update(x);
+            try {
+                out.println(csv);               
+            } finally {
+                out.close();
+            }
+        }
+
     }
 
     @Override

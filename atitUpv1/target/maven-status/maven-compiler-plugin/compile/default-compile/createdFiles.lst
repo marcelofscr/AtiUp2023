@@ -25,6 +25,7 @@ logicadenegocios\ConsultasObserver.class
 controladores\controladorMostrarCursos.class
 comparadores\itemValoracionRespuestasComparator.class
 DAO\ItemRespuestaDAO.class
+logicadenegocios\CSVConsulta.class
 terceros\ConexionChatGPT.class
 ConexionConTerceros\conexionMySql.class
 logicadenegocios\iItem.class
@@ -53,3 +54,4 @@ controladores\controladorFormatosBitacora.class
 controladores\controladorAnalisisCategoriaItem.class
 terceros\validarEmail.class
 DAO\DAO.class
+logicadenegocios\XMLConsulta.class

@@ -124,11 +124,11 @@
                 </tbody>
             </table>
 
-            <button class="w3-button w3-green w3-padding-large w3-large w3-margin-right">XML</button>
-            <button class="w3-button w3-green w3-padding-large w3-large w3-margin-right">CSV</button>
-            <button class="w3-button w3-green w3-padding-large w3-large w3-margin-right">PDF AL CORREO</button>
+            
             <form action="../controladorFormatosBitacora" method="post">
-                <input type="submit" name="buttontxt" value="TXT" class="styled-button">
+                <input type="submit" name="buttontxt" value="TXT" class="w3-button w3-red">
+                <input type="submit" name="buttontxt" value="XML" class="w3-button w3-red">
+                <input type="submit" name="buttontxt" value="CSV" class="w3-button w3-red">
             </form>
         </div>
 
