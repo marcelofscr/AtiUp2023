@@ -21,6 +21,7 @@ DAO\cursoDAO.class
 logicadenegocios\CategoriaConceptual.class
 comparadores\itemValoracionEjemploComparator.class
 controladores\controladorGuardarItem.class
+logicadenegocios\ConsultasObserver.class
 controladores\controladorMostrarCursos.class
 comparadores\itemValoracionRespuestasComparator.class
 DAO\ItemRespuestaDAO.class
@@ -43,10 +44,12 @@ controladores\controladorMostrarCategoriasA.class
 logicadenegocios\Bitacora.class
 logicadenegocios\Valoracion.class
 controladores\controladorCategoria.class
+logicadenegocios\TramaPlanaConsulta.class
 controladores\controladorValoracionEjemplo.class
 DAO\BitacoraDAO.class
 DAO\ItemEjemploDAO.class
 controladores\controladorCategoriaAnalisis.class
+controladores\controladorFormatosBitacora.class
 controladores\controladorAnalisisCategoriaItem.class
 terceros\validarEmail.class
 DAO\DAO.class

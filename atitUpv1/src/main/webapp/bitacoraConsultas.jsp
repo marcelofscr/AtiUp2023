@@ -48,6 +48,18 @@
             input[type="submit"] {
                 margin: 10px 0;
             }
+            .styled-button {
+                background-color: #4CAF50; /* Set the background color */
+                border: none; /* Remove border */
+                color: green; /* Set text color */
+                padding: 10px 20px; /* Set padding */
+                text-align: center; /* Align text center */
+                text-decoration: none; /* Remove underline */
+                display: inline-block; /* Make it an inline element */
+                font-size: 16px; /* Set font size */               
+                border-radius: 4px; /* Add rounded corners */
+            }
+
         </style>
     </head>
     <body>
@@ -57,10 +69,7 @@
             <div class="w3-bar w3-red w3-card w3-left-align w3-large">
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
                 <a href="index.jsp" class="w3-bar-item w3-button w3-padding-large w3-white">Inicio</a>
-                <a href="consultarPromptsUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Consultar Prompts</a>
                 <a href="ConsultarTopXItems.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Consultar Top</a>
-                <a href="valoracionRespuestaUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Val. Respuesta</a>
-                <a href="valoracionEjemploUsuario.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Val. Ejemplos</a>
                 <a href="analisisCategoria.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Analisis 1</a>
                 <a href="analisisItem.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Analisis 2</a>
                 <a href="analisisItemCategoria.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Analisis 3</a>
@@ -70,7 +79,7 @@
 
         <!-- Header -->
         <header class="w3-container w3-red w3-center" style="padding:56px 16px">
-            <h1 class="w3-margin w3-jumbo">Consultar Top Items</h1>
+            <h1 class="w3-margin w3-jumbo">Bitacora</h1>
         </header>
 
         <!-- Grid para ingresar consulta -->
@@ -104,22 +113,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="Bitacora" items="${listabit}">
+                    <c:forEach var="Bitacora" items="${listabit}">
                         <tr>
                             <td><c:out value = "${Bitacora.getHora()}" /></td>
                             <td><c:out value = "${Bitacora.getFecha()}" /></td>
                             <td><c:out value = "${Bitacora.getAccion()}" /></td>
                             <td><c:out value = "${Bitacora.getIdBitacora()}" /></td>
                         </tr>
-                </c:forEach>              
+                    </c:forEach>              
                 </tbody>
             </table>
-                        
-             <button class="w3-button w3-green w3-padding-large w3-large w3-margin-right">XML</button>
-             <button class="w3-button w3-green w3-padding-large w3-large w3-margin-right">CSV</button>
-             <button class="w3-button w3-green w3-padding-large w3-large w3-margin-right">TRAMA PLANA</button>
-              <button class="w3-button w3-green w3-padding-large w3-large w3-margin-right">PDF AL CORREO</button>
-                        
+
+            <button class="w3-button w3-green w3-padding-large w3-large w3-margin-right">XML</button>
+            <button class="w3-button w3-green w3-padding-large w3-large w3-margin-right">CSV</button>
+            <button class="w3-button w3-green w3-padding-large w3-large w3-margin-right">PDF AL CORREO</button>
+            <form action="../controladorFormatosBitacora" method="post">
+                <input type="submit" name="buttontxt" value="TXT" class="styled-button">
+            </form>
         </div>
 
         <script>
