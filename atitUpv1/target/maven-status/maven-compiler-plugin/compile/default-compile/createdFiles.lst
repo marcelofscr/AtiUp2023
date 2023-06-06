@@ -30,6 +30,7 @@ controladores\controladorMostrarCursos.class
 comparadores\itemValoracionRespuestasComparator.class
 DAO\ItemRespuestaDAO.class
 logicadenegocios\CSVConsulta.class
+logicadenegocios\Email.class
 terceros\ConexionChatGPT.class
 logicadenegocios\DecoradorTraduccion.class
 ConexionConTerceros\conexionMySql.class
@@ -37,7 +38,9 @@ logicadenegocios\iItem.class
 DAO\ValoracionEjemploDAO.class
 controladores\controladorMostrarCategoriaItem.class
 logicadenegocios\Ejemplo.class
+logicacreacional\EmailSingleton.class
 DAO\CategoriaItemDao.class
+logicadenegocios\Email$1.class
 terceros\GenerarXML.class
 logicadenegocios\ReporteBitacoraBase.class
 DAO\CategoriaDAO.class
