@@ -7,7 +7,10 @@ package controladores;
 import DAO.BitacoraDAO;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfCopy;
+import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -29,7 +32,6 @@ import logicadenegocios.ReporteBitacoraBase;
  */
 @WebServlet(name = "controladorPDF", urlPatterns = {"/controladorPDF"})
 public class controladorPDF extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,24 +45,25 @@ public class controladorPDF extends HttpServlet {
             PdfWriter.getInstance(documento, out);
 
             documento.open();
-
-            ReporteBitacoraBase reporteBase = (ReporteBitacoraBase) new ReporteBitacoraBase(bitacoras);
-            // Decorar con otros objetos decoradores según sea necesario
-            //ReporteBitacora reporteDecorado = new DecoradorTraduccion(reporteBase);
-            // Agregar más decoradores si es necesario
-
-            reporteBase.generarReporte(documento);
+ 
+            //ReporteBitacoraBase reporteBase = (ReporteBitacoraBase) new ReporteBitacoraBase(bitacoras);
+            //reporteBase.generarReporte(documento);
+ 
+            // Generar informe en inglés
+            ReporteBitacora reporteIngles = new ReporteBitacoraBase(bitacoras);
+            DecoradorTraduccion reporteInglesTraducido = new DecoradorTraduccion(reporteIngles);
+            reporteInglesTraducido.generarReporte(documento);
             
             //ENVIAR CORREO
             Email emailSender = EmailSingleton.getInstance();
             emailSender.createAndSendEmail(correo, "PDF AtiTup", documento, bitacoras);
 
-            documento.close();
+           documento.close();
         } catch (DocumentException ex) {
-            String message = ex.getMessage();
-            System.out.println("Mensaje de excepción: " + message);
+           String message = ex.getMessage();
+           System.out.println("Mensaje de excepción: " + message);
         } finally {
 
-        }
+       }
     }
 }

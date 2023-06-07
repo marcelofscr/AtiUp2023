@@ -20,12 +20,13 @@ import java.util.ArrayList;
  *
  * @author Jimena
  */
-public class ReporteBitacoraBase {
-    private ArrayList<Bitacora> bitacoras;
+public class ReporteBitacoraBase implements ReporteBitacora {
+    private final ArrayList<Bitacora> bitacoras;
 
     public ReporteBitacoraBase(ArrayList<Bitacora> bitacoras){
         this.bitacoras = bitacoras;}
     
+    @Override
     public void generarReporte(Document documento) throws DocumentException {
         Paragraph par1 = new Paragraph();
         Font fonttiulo = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD, BaseColor.BLACK);

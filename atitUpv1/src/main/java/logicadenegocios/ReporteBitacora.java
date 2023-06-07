@@ -6,11 +6,12 @@ package logicadenegocios;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import java.io.IOException;
 
 /**
  *
  * @author Usuario
  */
 public interface ReporteBitacora {
-    public void generarReporte(Document documento) throws DocumentException;   
+    public void generarReporte(Document documento) throws DocumentException, IOException ;   
 }

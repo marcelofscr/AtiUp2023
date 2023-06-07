@@ -4,60 +4,109 @@
  */
 package logicadenegocios;
 
+import DAO.BitacoraDAO;
 import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+
 
 /**
  *
  * @author Usuario
  */
 
-public class DecoradorTraduccion implements ReporteBitacora {
+public class DecoradorTraduccion {
+    private BitacoraDAO mibitacoraDAO;
+
     private ReporteBitacora reporteBitacora;
-    private ResourceBundle recursos;
+    //private ResourceBundle recursos;
 
-    public DecoradorTraduccion(ReporteBitacora reporteBitacora, ResourceBundle recursos) {
-        this.reporteBitacora = reporteBitacora;
-        this.recursos = recursos;
-    }
+    public DecoradorTraduccion(ReporteBitacora reporteBitacora) {
+        //ReporteBitacora reporteBitacora;
+        this.reporteBitacora = reporteBitacora;}
+    
+    /**
+     *
+     * @param documento
+     * @throws DocumentException
+     * @throws IOException
+     */
 
-    @Override
-    public void generarReporte(Document documento) throws DocumentException {
-        // Traducción de los encabezados de las columnas
-        PdfPTable tabla = new PdfPTable(4);
+    public void generarReporte(Document documento) throws DocumentException, IOException {
+        mibitacoraDAO = new BitacoraDAO();
+        ArrayList<Bitacora> x = new ArrayList();
+        x = mibitacoraDAO.listarBitacorasDehoy();
+        try{
+        //reporteBitacora.generarReporte(documento);
+        documento.newPage();
+        Paragraph par11 = new Paragraph();
+        par11.add(new Phrase(Chunk.NEWLINE));
+        par11.add(new Phrase(Chunk.NEWLINE));
+        par11.add(new Phrase(Chunk.NEWLINE));
+        par11.add(new Phrase(Chunk.NEWLINE));
+        documento.add(par11);
 
-        PdfPCell celda1 = new PdfPCell(new Paragraph(obtenerTextoTraducido("columna.hora"), FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
-        PdfPCell celda2 = new PdfPCell(new Paragraph(obtenerTextoTraducido("columna.fecha"), FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
-        PdfPCell celda3 = new PdfPCell(new Paragraph(obtenerTextoTraducido("columna.accion"), FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
-        PdfPCell celda4 = new PdfPCell(new Paragraph(obtenerTextoTraducido("columna.id"), FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
+        PdfPTable tabla1 = new PdfPTable(4);
 
-        tabla.addCell(celda1);
-        tabla.addCell(celda2);
-        tabla.addCell(celda3);
-        tabla.addCell(celda4);
-
-        // Llamar al método generarReporte del componente base
-        reporteBitacora.generarReporte(documento);
-    }
-
-    private String obtenerTextoTraducido(String clave) {
-        // Obtener el texto traducido del ResourceBundle
-        String textoTraducido;
-        try {
-            textoTraducido = recursos.getString(clave);
-        } catch (MissingResourceException e) {
-            // En caso de que la clave no se encuentre en el ResourceBundle, se devuelve la clave original
-            textoTraducido = clave;
+        PdfPCell celda5 = new PdfPCell(new Paragraph(translate("es","en","Hora"), FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
+        PdfPCell celda6 = new PdfPCell(new Paragraph(translate("es","en","Fecha"), FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
+        PdfPCell celda7 = new PdfPCell(new Paragraph(translate("es","en","Accion"), FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
+        PdfPCell celda8 = new PdfPCell(new Paragraph(translate("es", "en","ID"), FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.BLACK)));
+        tabla1.addCell(celda5);
+        tabla1.addCell(celda6);
+        tabla1.addCell(celda7);
+        tabla1.addCell(celda8);
+        /*for (Bitacora bitacora : x) {
+            tabla1.addCell(new PdfPCell(new Paragraph(bitacora.getHora(), FontFactory.getFont("Arial", 12))));
+            tabla1.addCell(new PdfPCell(new Paragraph(bitacora.getFecha(), FontFactory.getFont("Arial", 12))));
+            tabla1.addCell(new PdfPCell(new Paragraph(translate("es","en",bitacora.getAccion()), FontFactory.getFont("Arial", 12))));
+            tabla1.addCell(new PdfPCell(new Paragraph(String.valueOf(bitacora.getIdBitacora()), FontFactory.getFont("Arial", 12))));
         }
-        return textoTraducido;
+*/
+        documento.add(tabla1);
+            
+        }catch(DocumentException | IOException e){
+            System.out.println("Respuesta de traducción: " + e.toString());
+            
+        }
+
+
+    }
+              
+
+    private String translate(String langFrom, String langTo, String text) throws IOException {
+        // INSERT YOU URL HERE
+        String urlStr = "https://script.google.com/macros/s/AKfycbzL1_0hSOPQXmTAXIFuoQtiGInTy9fCHKB2H_tfUOoPAyFI1JjysUFF4b7dqlpraJxBYQ/exec" +
+                "?q=" + URLEncoder.encode(text, "UTF-8") +
+                "&target=" + langTo +
+                "&source=" + langFrom;
+        URL url = new URL(urlStr);
+        StringBuilder response = new StringBuilder();
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestProperty("User-Agent", "Mozilla/5.0");
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        System.out.println("Respuesta de traducción: " + response.toString());
+        return response.toString();
     }
 }
-    
+
+     
